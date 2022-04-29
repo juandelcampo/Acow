@@ -7,26 +7,24 @@ use App\Models\Author;
 
 class AuthorController extends Controller
 {
-    public function getAllAuthors()
+    public function get()
     {
-            return response()->json(['data' => Author::get()],200);
-
+        return response()->json(['data' => Author::get()],200);
     }
 
-    public function addNewAuthor(Request $request)
+    public function add(Request $request)
     {
         $newAuthor = new Author;
-        $newAuthor -> author = request('author');
-        $newAuthor -> lifetime = request('lifetime');
-        $newAuthor -> nationality = request('nationality');
-        $newAuthor -> url = request('url');
-        $newAuthor -> save();
-            return response()->json($newAuthor);
-
+        $newAuthor->author = request('author');
+        $newAuthor->lifetime = request('lifetime');
+        $newAuthor->nationality = request('nationality');
+        $newAuthor->url = request('url');
+        $newAuthor->save();
+        return response()->json($newAuthor);
     }
 
 
-    public function updateAuthors(Request $request, $authorId)
+    public function update(Request $request, $authorId)
     {
         $author = Author::find($authorId);
         $author->author = $request->author;
@@ -34,12 +32,11 @@ class AuthorController extends Controller
         $author->nationality = $request->nationality;
         $author->url = $request->url;
         $author->save();
-            return response()->json($author);
-
+        return response()->json($author);
     }
 
 
-    public function deleteAuthor($authorId)
+    public function delete($authorId)
     {
         $author = Author:: find($authorId);
         $result = $author->delete();
@@ -49,9 +46,5 @@ class AuthorController extends Controller
 
         else
             return ["result"=>"fail"];
-
     }
 }
-
-
-

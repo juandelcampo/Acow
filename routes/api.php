@@ -23,30 +23,17 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::get('authors', [AuthorController::class, 'getAllAuthors']);
-Route::post('authors', [AuthorController::class, 'addNewAuthor']);
-Route::post('authors/{authorId}', [AuthorController::class, 'updateAuthors']);
-Route::delete('authors/{authorId}', [AuthorController::class, 'deleteAuthor']);
+Route::get('authors', [AuthorController::class, 'get']);
+Route::post('authors', [AuthorController::class, 'addr']);
+Route::post('authors/{authorId}', [AuthorController::class, 'update']);
+Route::delete('authors/{authorId}', [AuthorController::class, 'delete']);
 
-Route::get('quotes', [QuoteController::class, 'getAllQuotes']);
-Route::post('quotes', [QuoteController::class, 'addNewQuote']);
-Route::post('quotes/{quoteId}', [QuoteController::class, 'updateQuote']);
-Route::delete('quotes/{quoteId}', [QuoteController::class, 'deleteQuote']);
+Route::get('quotes', [QuoteController::class, 'get']);
+Route::post('quotes', [QuoteController::class, 'add']);
+Route::post('quotes/{quoteId}', [QuoteController::class, 'update']);
+Route::delete('quotes/{quoteId}', [QuoteController::class, 'delete']);
 
-Route::get('categories', [CategoryController::class, 'getAllCategories']);
-Route::post('categories', [CategoryController::class, 'addNewCategory']);
-Route::post('categories/{categoryId}', [CategoryController::class, 'updateCategory']);
-Route::delete('categories/{categoryId}', [CategoryController::class, 'deleteCategory']);
-
-
-
-
-/*
-Route::get('quotes', [QuoteController::class, 'getQuotesWithAuthors']); //return quote with author
-Route::get('quotes/{numberOfQuotes}', [QuoteController::class, 'getAnAmountOfQuotes']); // get an specified amount of quotes
-Route::get('dates', [DateController::class, 'getDates']);
-Route::get('authors', [AuthorController::class, 'getAllAuthors']); //get the entire list of authors
-Route::get('authors/{authorId}', [AuthorController::class, 'getAuthors']); //get author by ID
-Route::get('completequotes/{categoryId}', [QuoteController::class, 'getAllQuotesInformation']); //get quotes with author and category data
-Route::get('quotes', [QuoteController::class, 'getQuotes']);
-*/
+Route::get('categories', [CategoryController::class, 'get']);
+Route::post('categories', [CategoryController::class, 'add']);
+Route::post('categories/{categoryId}', [CategoryController::class, 'update']);
+Route::delete('categories/{categoryId}', [CategoryController::class, 'delete']);

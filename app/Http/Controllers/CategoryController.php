@@ -7,33 +7,30 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function getAllCategories()
+    public function get()
     {
-            return response()->json(['data' => Category::get()],200);
-
+        return response()->json(['data' => Category::get()],200);
     }
 
-    public function addNewCategory(Request $request)
+    public function add(Request $request)
     {
-        $newCategory  = new Category;
-        $newCategory -> category = request('category');
-        $newCategory -> save();
-            return response()->json($newCategory);
-
+        $newCategory=new Category;
+        $newCategory->category = request('category');
+        $newCategory->save();
+        return response()->json($newCategory);
     }
 
 
-    public function updateCategory(Request $request, $categoryId)
+    public function update(Request $request, $categoryId)
     {
         $category = Category::find($categoryId);
         $category->category = $request->category;
         $category->save();
-            return response()->json($category);
-
+        return response()->json($category);
     }
 
 
-    public function deleteCategory($categoryId)
+    public function delete($categoryId)
     {
         $category = Category::find($categoryId);
         $result = $category->delete();
@@ -43,7 +40,5 @@ class CategoryController extends Controller
 
         else
             return ["result"=>"fail"];
-
     }
 }
-

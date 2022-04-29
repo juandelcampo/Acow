@@ -15,9 +15,9 @@ class CreateCategoryQuoteTable extends Migration
     {
         Schema::create('category_quote', function (Blueprint $table) {
 
-            $table->integer('quote_id')->unsigned();
+            //$table->integer('quote_id')->unsigned();
             $table->foreign('quote_id')->references('id')->on('quotes')->onDelete('cascade');
-            $table->integer('category_id')->unsigned();
+            //$table->integer('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
         });
     }
