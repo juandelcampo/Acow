@@ -9,16 +9,12 @@ class AuthorController extends Controller
 {
     public function get()
     {
-        return response()->json(['data' => Author::get()],200);
+        return response()->json(['data' => Author::with('quotes')->get()],200);
     }
 
-    public function add(Request $request)
+    public function add()
     {
-        $newAuthor = new Author;
-        $newAuthor->author = request('author');
-        $newAuthor->lifetime = request('lifetime');
-        $newAuthor->nationality = request('nationality');
-        $newAuthor->url = request('url');
+        $newAuthor = new Author(request()->all());
         $newAuthor->save();
         return response()->json($newAuthor);
     }
@@ -26,24 +22,20 @@ class AuthorController extends Controller
 
     public function update(Request $request, $authorId)
     {
+        $data = $request->json()->all();
         $author = Author::find($authorId);
-        $author->author = $request->author;
-        $author->lifetime = $request->lifetime;
-        $author->nationality = $request->nationality;
-        $author->url = $request->url;
-        $author->save();
+        $author->update($data);
         return response()->json($author);
     }
 
 
     public function delete($authorId)
     {
-        $author = Author:: find($authorId);
+        $author = Author::find($authorId);
         $result = $author->delete();
 
         if($result)
             return ["result"=>"succes"];
-
         else
             return ["result"=>"fail"];
     }

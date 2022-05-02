@@ -4,7 +4,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\QuoteController;
 use App\Http\Controllers\AuthorController;
-use App\Http\Controllers\DateController;
 use App\Http\Controllers\CategoryController;
 
 /*
@@ -24,7 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::get('authors', [AuthorController::class, 'get']);
-Route::post('authors', [AuthorController::class, 'addr']);
+Route::post('authors', [AuthorController::class, 'add']);
 Route::post('authors/{authorId}', [AuthorController::class, 'update']);
 Route::delete('authors/{authorId}', [AuthorController::class, 'delete']);
 

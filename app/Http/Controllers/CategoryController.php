@@ -9,13 +9,12 @@ class CategoryController extends Controller
 {
     public function get()
     {
-        return response()->json(['data' => Category::get()],200);
+        return response()->json(['data' => Category::with('quotes')->with('authors')->get()],200);
     }
 
-    public function add(Request $request)
+    public function add()
     {
-        $newCategory=new Category;
-        $newCategory->category = request('category');
+        $newCategory =new Category(request()->all());
         $newCategory->save();
         return response()->json($newCategory);
     }
@@ -23,9 +22,9 @@ class CategoryController extends Controller
 
     public function update(Request $request, $categoryId)
     {
+        $data = $request->json()->all();
         $category = Category::find($categoryId);
-        $category->category = $request->category;
-        $category->save();
+        $category->update($data);
         return response()->json($category);
     }
 
@@ -37,7 +36,6 @@ class CategoryController extends Controller
 
         if($result)
             return ["result"=>"succes"];
-
         else
             return ["result"=>"fail"];
     }

@@ -9,28 +9,38 @@ use Illuminate\Database\Eloquent\Builder;
 class QuoteController extends Controller
 {    public function get()
     {
-        return response()->json(['data' => Quote::get()],200);
+        return response()->json(['data' => Quote::with('categories')->get()],200);
     }
 
-    public function add(Request $request)
+    public function add()
     {
-        $newQuote = new Quote;
-        $newQuote->quote = request('quote');
-        $newQuote->author_id = request('author_id');
-        $newQuote->publish_date = request('publish_date');
+        $data = request()->all();
+        $newQuote = new Quote($data);
         $newQuote->save();
-        return response()->json($newQuote);
+
+        if(!empty($data['categories']))
+            $newQuote->categories()->attach($data['categories']);
+
+        return response()->json($newQuote->load('categories'));
     }
 
 
     public function update(Request $request, $quoteId)
     {
+        $data = $request->json()->all();
         $quote = Quote::find($quoteId);
+        $quote->update($data);
+
+        if(!empty($data['categories']))
+            $quote->categories()->attach($data['categories']);
+
+        return response()->json($quote->load('categories'));
+       /* $quote = Quote::find($quoteId);
         $quote->quote = $request->quote;
         $quote->author_id = $request->author_id;
         $quote->publish_date = $request->publish_date;
         $quote->save();
-        return response()->json($quote);
+        return response()->json($quote);*/
     }
 
 
@@ -41,7 +51,6 @@ class QuoteController extends Controller
 
         if($result)
             return ["result"=>"succes"];
-
         else
             return ["result"=>"fail"];
     }

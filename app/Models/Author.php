@@ -7,13 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Author extends Model
 {
-        /**
-         * Get the quote that owns the Author.
-         */
-        public function quotes()
-        {
-            return $this->hasMany(Quote::class);
-        }
+    protected $guarded = [];
+
+    public function quotes()
+    {
+        return $this->hasMany(Quote::class);
+    }
 
 
 }

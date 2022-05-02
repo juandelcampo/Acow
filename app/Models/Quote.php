@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Quote extends Model
 {
+    protected $guarded = ['categories'];
+
     public function author()
     {
         return $this->belongsTo(Author::class);
