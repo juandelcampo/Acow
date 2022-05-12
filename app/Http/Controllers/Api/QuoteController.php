@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Models\Quote;
 use Illuminate\Database\Eloquent\Builder;
+use App\Http\Requests\QuoteRequest;
+use App\Http\Controllers\Controller;
 
 class QuoteController extends Controller
 {    public function get()
@@ -12,8 +14,10 @@ class QuoteController extends Controller
         return response()->json(['data' => Quote::with('categories')->get()],200);
     }
 
-    public function add()
+    public function add(QuoteRequest $request)
     {
+        $request->validated();
+
         $data = request()->all();
         $newQuote = new Quote($data);
         $newQuote->save();
@@ -25,8 +29,10 @@ class QuoteController extends Controller
     }
 
 
-    public function update(Request $request, $quoteId)
+    public function update(QuoteRequest $request, $quoteId)
     {
+        $request->validate();
+
         $data = $request->json()->all();
         $quote = Quote::find($quoteId);
         $quote->update($data);
@@ -35,12 +41,6 @@ class QuoteController extends Controller
             $quote->categories()->attach($data['categories']);
 
         return response()->json($quote->load('categories'));
-       /* $quote = Quote::find($quoteId);
-        $quote->quote = $request->quote;
-        $quote->author_id = $request->author_id;
-        $quote->publish_date = $request->publish_date;
-        $quote->save();
-        return response()->json($quote);*/
     }
 
 

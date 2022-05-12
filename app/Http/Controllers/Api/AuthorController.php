@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Models\Author;
+use App\Http\Requests\AuthorRequest;
+use App\Http\Controllers\Controller;
 
 class AuthorController extends Controller
 {
@@ -12,16 +14,18 @@ class AuthorController extends Controller
         return response()->json(['data' => Author::with('quotes')->get()],200);
     }
 
-    public function add()
+    public function add(AuthorRequest $request)
     {
+        $validated = $request->validated();
         $newAuthor = new Author(request()->all());
         $newAuthor->save();
         return response()->json($newAuthor);
     }
 
 
-    public function update(Request $request, $authorId)
+    public function update(AuthorRequest $request, $authorId)
     {
+        $request->validated();
         $data = $request->json()->all();
         $author = Author::find($authorId);
         $author->update($data);
