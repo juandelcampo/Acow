@@ -25,7 +25,7 @@ class AuthorController extends Controller
         $request->validated();
         Author::create($request->all());
 
-        return redirect()->route('authors.index')->with('success','Author Created successfully.');
+        return redirect()->route('authors.index')->with('success','Author created successfully.');
     }
 
     public function edit($authorId)
@@ -44,7 +44,7 @@ class AuthorController extends Controller
         $author->url = $request->url;
         $author->save();
 
-        return redirect('/authors')->with('success', 'Author Updated successfully');
+        return redirect('/authors')->with('success', 'Author updated successfully');
     }
 
     public function delete($authorId)
@@ -52,6 +52,6 @@ class AuthorController extends Controller
         $author = Author::find($authorId);
         $author->delete();
 
-        return redirect()->route('authors.index')->with('success', 'Author Deleted successfully');
+        return redirect()->route('authors.index')->with('success', 'Author deleted successfully');
     }
 }
