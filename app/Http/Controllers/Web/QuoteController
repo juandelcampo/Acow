@@ -1,17 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
-use Illuminate\Http\Request;
 use App\Models\Quote;
-use Illuminate\Database\Eloquent\Builder;
 use App\Http\Requests\QuoteRequest;
+use App\Http\Controllers\Controller;
 
 class QuoteController extends Controller
 {
     public function index()
     {
-        $categories = Quote::paginate(15);
+        $quotes = Quote::paginate(15);
         return view('quotes-index', ['quotes' => $quotes]);
     }
 
@@ -42,7 +41,7 @@ class QuoteController extends Controller
         $quote = Quote::find($request->id);
         $quote->quote = $request->quote;
         $quote->save();
-        return redirect('/quotes')->with('success', 'Quote Updated successfully');
+        return redirect('/quotes')->with('success', 'Quote updated successfully');
     }
 
     public function delete($quoteId)
@@ -50,7 +49,7 @@ class QuoteController extends Controller
         $quote = Quote::find($quoteId);
         $quote->delete();
 
-        return redirect()->route('quotes.index')->with('success', 'Quote Deleted successfully');
+        return redirect()->route('quotes.index')->with('success', 'Quote deleted successfully');
     }
 }
 

@@ -6,6 +6,7 @@ use App\Http\Controllers\Web\QuoteController;
 use App\Http\Controllers\Web\AuthorController;
 use App\Http\Controllers\Web\CategoryController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,9 +44,9 @@ Route::get('categories/delete/{categoryId}', [CategoryController::class, 'delete
 Route::get('quotes', [QuoteController::class, 'index'])->name('quotes.index');
 Route::get('quotes/create', [QuoteController::class, 'create'])->name('quotes.create');
 Route::post('quotes/store', [QuoteController::class, 'store'])->name('quotes.store');
-Route::get('quotes/store/{categoryId}', [QuoteController::class, 'edit'])->name('quotes.edit');
-Route::post('quotes/update/{categoryId}', [QuoteController::class, 'update'])->name('quotes.update');
-Route::get('quotes/delete/{categoryId}', [QuoteController::class, 'delete'])->name('quotes.delete');
+Route::get('quotes/store/{quoteId}', [QuoteController::class, 'edit'])->name('quotes.edit');
+Route::post('quotes/update/{quoteId}', [QuoteController::class, 'update'])->name('quotes.update');
+Route::get('quotes/delete/{quoteId}', [QuoteController::class, 'delete'])->name('quotes.delete');
 
 
 

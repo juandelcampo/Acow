@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Web;
 
-use App\Http\Requests\AuthorRequest;
 use App\Models\Author;
+use App\Http\Requests\AuthorRequest;
 use App\Http\Controllers\Controller;
 
 
