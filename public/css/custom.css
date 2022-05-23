@@ -24,6 +24,11 @@
     table-layout: fixed;
 	max-width: 100%;
 }
+.table-quotes{
+    width: 100%;
+    table-layout: auto;
+	max-width: 100%;
+}
 .width-id{
     width: 32rem;
 }
@@ -46,6 +51,13 @@ th {
 .isa-error {
     color: #D8000C;
   }
+.select-form{
+    margin-left: 2rem;
+    margin-right: 2rem;
 
+}
 
+.overflow-y-auto{
+    overflow-y: auto;
 
+}

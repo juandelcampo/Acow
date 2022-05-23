@@ -28,7 +28,8 @@ class QuoteRequest extends FormRequest
         return [
             'quote' => 'required|string',
             'author_id' => 'required|integer|exists:authors,id',
-            'publish_date' => 'required|alpha_dash'
+            'publish_date' => 'required|alpha_dash',
+            'category_id' => 'required|exists: category_quote'
         ];
     }
 
