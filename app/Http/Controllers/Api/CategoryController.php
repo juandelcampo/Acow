@@ -11,14 +11,14 @@ class CategoryController extends Controller
 {
     public function get()
     {
-        return response()->json(['data' => Category::with('quotes')->get()],200);
+        return response()->json(['data' => Category::with('quotes')->get()], 200);
     }
 
     public function add(CategoryRequest $request)
     {
-       $request->validated();
+        $request->validated();
 
-        $newCategory =new Category(request()->all());
+        $newCategory = new Category(request()->all());
         $newCategory->save();
         return response()->json($newCategory);
     }
@@ -40,9 +40,9 @@ class CategoryController extends Controller
         $category = Category::find($categoryId);
         $result = $category->delete();
 
-        if($result)
-            return ["result"=>"succes"];
+        if ($result)
+            return ["result" => "success"];
         else
-            return ["result"=>"fail"];
+            return ["result" => "fail"]; // Falla cuando no viene id
     }
 }

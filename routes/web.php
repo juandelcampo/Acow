@@ -47,6 +47,7 @@ Route::post('quotes/store', [QuoteController::class, 'store'])->name('quotes.sto
 Route::get('quotes/edit/{quoteId}', [QuoteController::class, 'edit'])->name('quotes.edit');
 Route::post('quotes/update/{quoteId}', [QuoteController::class, 'update'])->name('quotes.update');
 Route::get('quotes/delete/{quoteId}', [QuoteController::class, 'delete'])->name('quotes.delete');
+Route::get('dictionary', [QuoteController::class, 'api']);
 
 
 

@@ -9,6 +9,7 @@ use App\Http\Requests\QuoteRequest;
 use App\Http\Requests\CategoryRequest;
 use App\Http\Requests\AuthorRequest;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Http;
 
 
 class QuoteController extends Controller
@@ -50,15 +51,14 @@ class QuoteController extends Controller
 
         foreach ($categories as $category)
         {
-            $selected[]=array
-            (
+            $selected[]=[
                 'category'  => $category->category,
                 'id'        => $category->id,
                 'selected'  => $quote->categories()->get()->contains( function ($value, $key) use ($category)
                                 {
                                     return $value->id == $category->id;
                                 })
-            );
+            ];
         }
         return view('quotes-edit', ['quote'=>$quote, 'categories' =>$selected, 'authors' => $authors]);
     }
@@ -69,6 +69,8 @@ class QuoteController extends Controller
         $quote = Quote::find($quoteId);
         $quote->categories()->sync($categoryRequest->get('categories'));
         $quote->author_id = $request->get('author_id');
+        $quote->quote = $request->get('quote');
+        $quote->publish_date = $request->get('publish_date');
         $quote->save();
 
         return redirect('/quotes')->with('success', 'Quote updated successfully');
@@ -83,5 +85,20 @@ class QuoteController extends Controller
 
         return redirect()->route('quotes.index')->with('success', 'Quote deleted successfully');
     }
-}
+    public function api()
+    {
+        $translations = Http::acceptJson()->get('https://api.adviceslip.com/advice');
 
+
+        return view("dictionary", [
+            'translations'=>json_decode($translations)
+        ]);
+
+
+        /*view(dictionary, [
+            'translations'=>
+        ];*/
+
+    }
+
+}
