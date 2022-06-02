@@ -16,9 +16,10 @@ class AuthorController extends Controller
 
     public function add(AuthorRequest $request)
     {
-        $validated = $request->validated();
+        $request->validated();
         $newAuthor = new Author(request()->all());
         $newAuthor->save();
+
         return response()->json($newAuthor);
     }
 
@@ -29,6 +30,7 @@ class AuthorController extends Controller
         $data = $request->json()->all();
         $author = Author::find($authorId);
         $author->update($data);
+
         return response()->json($author);
     }
 

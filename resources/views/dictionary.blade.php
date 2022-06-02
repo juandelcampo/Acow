@@ -9,8 +9,8 @@
                 <br>
                 <div>
 
-@foreach ($translations as $translation)
-<h1>{{  $translation->advice }}</h1>
+@foreach ($advices as $advice)
+<h1>{{  $advice->advice }}</h1>
 @endforeach
 
 

@@ -7,7 +7,6 @@ use App\Models\Category;
 use App\Models\Author;
 use App\Http\Requests\QuoteRequest;
 use App\Http\Requests\CategoryRequest;
-use App\Http\Requests\AuthorRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Http;
 
@@ -18,7 +17,6 @@ class QuoteController extends Controller
     {
         $quotes = Quote::with('categories')->paginate(30);
         return view('quotes-index', ['quotes' => $quotes]);
-
     }
 
 
@@ -85,20 +83,14 @@ class QuoteController extends Controller
 
         return redirect()->route('quotes.index')->with('success', 'Quote deleted successfully');
     }
+
     public function api()
     {
-        $translations = Http::acceptJson()->get('https://api.adviceslip.com/advice');
-
+        $advices = Http::acceptJson()->get('https://api.adviceslip.com/advice');
 
         return view("dictionary", [
-            'translations'=>json_decode($translations)
+            'advices'=>json_decode($advices)
         ]);
-
-
-        /*view(dictionary, [
-            'translations'=>
-        ];*/
-
     }
 
 }

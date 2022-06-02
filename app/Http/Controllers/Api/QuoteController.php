@@ -42,10 +42,9 @@ class QuoteController extends Controller
     }
 
 
-    public function delete($quoteId, QuoteRequest $request, CategoryRequest $categoryRequest)
+    public function delete($quoteId)
     {
         $quote = Quote::find($quoteId);
-
         $result = $quote->delete();
 
         if ($result)
@@ -62,48 +61,10 @@ class QuoteController extends Controller
             ->format('m-d');
 
         $quote = Quote::where('publish_date', $todayDate)->with('author')->get()->first();
-
         DetectLanguage::setApiKey("843ad80f5ee915b20f2af004df1aa8e0");
-
         $language = DetectLanguage::detect("$quote");
 
 
-
-
-        $curl = curl_init();
-
-        curl_setopt_array($curl, [
-            CURLOPT_URL => "https://yandextranslatezakutynskyv1.p.rapidapi.com/translate",
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_ENCODING => "",
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 30,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => "POST",
-            CURLOPT_POSTFIELDS => "text=%3CREQUIRED%3E&lang=%3CREQUIRED%3E&apiKey=%3CREQUIRED%3E",
-            CURLOPT_HTTPHEADER => [
-                "X-RapidAPI-Host: YandexTranslatezakutynskyV1.p.rapidapi.com",
-                "X-RapidAPI-Key: c8eadeb2a7mshda1e559ab3e4592p175d30jsn813c18750cbe",
-                "content-type: application/x-www-form-urlencoded"
-            ],
-        ]);
-
-        $response = curl_exec($curl);
-        $err = curl_error($curl);
-
-        curl_close($curl);
-
-        if ($err) {
-            echo "cURL Error #:" . $err;
-        }
-        $responseData = json_decode($response);
-
-
-
-
-
-
-        return ['quote' => $quote->quote, 'author' => $quote->author->author, 'language' => $language[0]->language, 'translation' => $responseData->message];
+        return ['quote' => $quote->quote, 'author' => $quote->author->author, 'language' => $language[0]->language];
     }
 }

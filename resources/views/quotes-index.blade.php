@@ -40,12 +40,10 @@
                             Actions
                         </th>
                     </tr>
-
                 </thead>
                 <tbody>
                     @foreach($quotes as $quote)
                     <tr class="border-b ">
-
                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                             {{$quote['id']}}
                         </td>
