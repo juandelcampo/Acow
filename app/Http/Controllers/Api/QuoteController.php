@@ -7,10 +7,25 @@ use App\Http\Requests\QuoteRequest;
 use App\Http\Requests\CategoryRequest;
 use App\Http\Controllers\Controller;
 use DetectLanguage\DetectLanguage;
-use App\Services\TraductorUno;
+use App\Interfaces\TranslationRepositoryInterface;
+
 
 class QuoteController extends Controller
 {
+    public $libreTranslateRepository;
+    public $googleTranslateRepository;
+
+   public function __construct(TranslationRepositoryInterface $libreTranslateRepository, $googleTranslateRepository)
+   {
+       $this->libreTranslateRepository = $libreTranslateRepository;
+       $this->googleTranslateRepository = $googleTranslateRepository;
+   }
+
+   public function translation($quote, $language)
+   {
+        return $this->libreTranslateRepository->translate($quote, $language);
+   }
+
     public function get()
     {
         return response()->json(['data' => Quote::with('categories')->get()], 200);
