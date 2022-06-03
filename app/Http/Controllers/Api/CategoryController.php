@@ -6,6 +6,10 @@ use App\Models\Category;
 use App\Http\Requests\CategoryRequest;
 use App\Http\Controllers\Controller;
 
+
+// Code Review
+// Validar que las rutas funcionen con SAD and Happy paths
+
 class CategoryController extends Controller
 {
     public function get()
@@ -23,7 +27,7 @@ class CategoryController extends Controller
     }
 
 
-    public function update(CategoryRequest $request, $categoryId)
+    public function update(CategoryRequest $request, $categoryId) // Tipar el input y el output
     {
         $request->validate();
         $data = $request->json()->all();
@@ -34,7 +38,7 @@ class CategoryController extends Controller
     }
 
 
-    public function delete($categoryId)
+    public function delete($categoryId) // Tipar el input y el output
     {
         $category = Category::find($categoryId);
         $result = $category->delete();

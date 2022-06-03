@@ -10,6 +10,9 @@ use DetectLanguage\DetectLanguage;
 use App\Interfaces\TranslationRepositoryInterface;
 
 
+// Code Review
+// Validar que las rutas funcionen con SAD and Happy paths
+
 class QuoteController extends Controller
 {
     public $libreTranslateRepository;
@@ -21,7 +24,8 @@ class QuoteController extends Controller
        $this->googleTranslateRepository = $googleTranslateRepository;
    }
 
-   public function translation($quote, $language)
+   // Le cambiaria el nombre al metodo ya que los mismos suelen ser acciones
+   public function translation($quote, $language) // Tipar el input y el output
    {
         return $this->libreTranslateRepository->translate($quote, $language);
    }
@@ -48,20 +52,25 @@ class QuoteController extends Controller
         $request->validated();
         $quote = Quote::find($quoteId);
         $quote->categories()->sync($categoryRequest->get('categories'));
+
+        // Intentar usar Mass Assignment https://laravel.com/docs/9.x/eloquent#mass-assignment
+        // para la asignacion de propiedades
         $quote->author_id = $request->get('author_id');
         $quote->quote = $request->get('quote');
         $quote->publish_date = $request->get('publish_date');
+
         $quote->save();
 
         return response()->json($quote->load('categories'));
     }
 
 
-    public function delete($quoteId)
+    public function delete($quoteId)  // Tipar el input y el output
     {
         $quote = Quote::find($quoteId);
         $result = $quote->delete();
 
+        // Usar un ternario para el if
         if ($result)
             return ["result" => "success"];
         else
@@ -76,7 +85,11 @@ class QuoteController extends Controller
             ->format('m-d');
 
         $quote = Quote::where('publish_date', $todayDate)->with('author')->get()->first();
-        DetectLanguage::setApiKey("843ad80f5ee915b20f2af004df1aa8e0");
+
+        // Mover esta logica a LanguageService.php
+        // que va a tener un metodo llamada getLanguage(string $text)
+        // y va a devolver el lenguaje del texto de origen
+        DetectLanguage::setApiKey("843ad80f5ee915b20f2af004df1aa8e0"); // Mover el api key al archivo de .env y .env.example
         $language = DetectLanguage::detect("$quote");
 
 

@@ -26,6 +26,10 @@ Route::get('/dashboard', function (){
 
 require __DIR__.'/auth.php';
 
+// Code Review
+// Usar grupos para las rutas para la misma entidad
+// ie: /authors https://laravel.com/docs/9.x/routing#route-group-prefixes 
+
 Route::get('authors', [AuthorController::class, 'index'])->name('authors.index');
 Route::get('authors/create', [AuthorController::class, 'create'])->name('authors.create');
 Route::post('authors/store', [AuthorController::class, 'store'])->name('authors.store');

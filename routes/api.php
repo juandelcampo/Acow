@@ -11,6 +11,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+// Code Review
+// Usar grupos para las rutas para la misma entidad
+// ie: /authors https://laravel.com/docs/9.x/routing#route-group-prefixes 
 
 Route::get('authors', [AuthorController::class, 'get']);
 Route::post('authors', [AuthorController::class, 'add']);
