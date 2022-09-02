@@ -35,7 +35,7 @@
             .mt-8{margin-top:2rem}.m-0{margin:0rem}.ml-12{margin-left:3rem}.-mt-px{margin-top:-1px}.max-w-6xl{max-width:72rem}
             .min-h-screen{min-height:100vh}.overflow-hidden{overflow:hidden}.p-6{padding:1.5rem}.p-7{padding:0.75rem}
             .py-4{padding-top:1rem;padding-bottom:1rem}.py-x{padding-bottom:11rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}
-            .pt-8{padding-top:1rem}.fixed{position:fixed}.relative{position:relative}.top-0{top:0}.right-0{right:0}
+            .pt-8{padding-top:1rem}.fixed{position:fixed}.relative{position:relative}.top-0{top:0}.right-0{right:0}.left-0{left:0}
             .shadow{box-shadow:0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px 0 rgba(0,0,0,.06)}.text-center{text-align:center}
             .text-gray-200{--text-opacity:1;color:#edf2f7;color:rgba(237,242,247,var(--text-opacity))}
             .text-gray-300{--text-opacity:1;color:#e2e8f0;color:rgba(226,232,240,var(--text-opacity))}
@@ -57,8 +57,12 @@
     </head>
     <body class="antialiased">
         <div style="max-width: 100%" class="relative flex justify-center items-top  min-h-screen bg-gray-100 dark:bg-gray-900   sm:pt-0 ">
+            <div class=" fixed top-0 left-0 px-6 py-3 sm:block">
+                <p>A calendar of Wisdom</p>
+            </div>
+
             @if (Route::has('login'))
-                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                <div class="fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
                         <a href="{{ url('/dashboard') }}" class=" text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
                     @else

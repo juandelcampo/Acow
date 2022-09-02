@@ -6,13 +6,16 @@ use App\Http\Controllers\Web\QuoteController;
 use App\Http\Controllers\Web\AuthorController;
 use App\Http\Controllers\Web\CategoryController;
 use App\Http\Requests\Request;
+use Illuminate\Support\Facades\Auth;
 
 Route::get ('/', function (){
+
     return view('welcome');
 });
 Route::get('/dashboard', function (){
-    return view('dashboard');
-})->middleware(['auth'])->name ('dashboard');
+    $user = Auth::user()->name;
+    return view('dashboard', ['user' => $user]);
+    })->middleware(['auth'])->name ('dashboard');
 
 require __DIR__.'/auth.php';
 
