@@ -15,6 +15,6 @@ class Quote extends Model
     }
     public function categories()
     {
-        return $this->belongsToMany(Category::class)->withPivot('quote_id','category_id');
+        return $this->belongsToMany(Category::class)->withPivot('category_id','quote_id');
     }
 }

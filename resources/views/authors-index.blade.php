@@ -60,7 +60,7 @@
                         </td>
                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                             <a href="{{ url($author->url )}}">
-                            {{$author['url']}} </a>
+                                {{$author['author']}}'s Wikipedia</a>
                         </td>
                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                             <!-- Edit -->

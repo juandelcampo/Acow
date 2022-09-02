@@ -2,11 +2,9 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
 
-class AuthorRequest extends FormRequest
+class AuthorRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,18 +21,31 @@ class AuthorRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules():array
     {
-        return[
-            'author' => 'required|string|max:150|',
+         return [
+            'author' => 'required|string|max:150',
             'lifetime' => 'required|alpha_dash',
             'nationality' => 'required|max:25|alpha',
             'url' => 'required|url'
         ];
     }
 
-    public function failedValidation(Validator $validator)
+    public function messages()
     {
-
+        return [
+            'author.required' => 'A name is required',
+            'lifetime.required' => 'A lifetime is required',
+            'nationality.required' => 'A nationality date is required',
+            'url.required' => 'A website is required'
+        ];
     }
+
+    // public function failedValidation(Validator $validator)
+    // {
+
+    // }
+
+
+
 }

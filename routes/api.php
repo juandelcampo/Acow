@@ -6,30 +6,32 @@ use App\Http\Controllers\Api\QuoteController;
 use App\Http\Controllers\Api\AuthorController;
 use App\Http\Controllers\Api\CategoryController;
 
-
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Code Review
-// Usar grupos para las rutas para la misma entidad
-// ie: /authors https://laravel.com/docs/9.x/routing#route-group-prefixes 
+Route::prefix('authors')->group(function(){
+    Route::get('/', [AuthorController::class, 'get']);
+    Route::post('/', [AuthorController::class, 'add']);
+    Route::post('{authorId}', [AuthorController::class, 'update']);
+    Route::delete('{authorId}', [AuthorController::class, 'delete']);
+});
 
-Route::get('authors', [AuthorController::class, 'get']);
-Route::post('authors', [AuthorController::class, 'add']);
-Route::post('authors/{authorId}', [AuthorController::class, 'update']);
-Route::delete('authors/{authorId}', [AuthorController::class, 'delete']);
+Route::prefix('quotes')->group(function(){
+    Route::get('/', [QuoteController::class, 'get']);
+    Route::post('/', [QuoteController::class, 'add']);
+    Route::post('{quoteId}', [QuoteController::class, 'update']);
+    Route::delete('{quoteId}',[QuoteController::class, 'delete']);
+    Route::get('todayquote', [QuoteController::class, 'GetTodayQuote']);
+    Route::get('randomquote', [QuoteController::class, 'getRandomQuote']);
 
-Route::get('quotes', [QuoteController::class, 'get']);
-Route::post('quotes', [QuoteController::class, 'add']);
-Route::post('quotes/{quoteId}', [QuoteController::class, 'update']);
+});
+
+Route::prefix('categories')->group(function(){
+    Route::get('/', [CategoryController::class, 'get']);
+    Route::post('/', [CategoryController::class, 'add']);
+    Route::post('{categoryId}', [CategoryController::class, 'update']);
+    Route::delete('{categoryId}', [CategoryController::class, 'delete']);
+});
 
 
-Route::delete('quotes/{quoteId}',[QuoteController::class, 'delete']);
-
-Route::get('quotes/todayquote', [QuoteController::class, 'today']);
-
-Route::get('categories', [CategoryController::class, 'get']);
-Route::post('categories', [CategoryController::class, 'add']);
-Route::post('categories/{categoryId}', [CategoryController::class, 'update']);
-Route::delete('categories/{categoryId}', [CategoryController::class, 'delete']);

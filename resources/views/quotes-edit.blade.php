@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
         <div class="max-w-7xl mx-auto table-header">
-            <form method="POST" action= "/quotes/update/{{ $quote->id }}" enctype="multipart/form-data"> @csrf
+            <form method="POST" action= "/quotes/update/{{$quote->id}}" enctype="multipart/form-data"> @csrf
             <br>
             <input type="hidden" name="id" value="{{$quote->id}}">
                 <div class="flex justify-center">
@@ -41,7 +41,7 @@
                 <div>
                     <div class="flex justify-center">
                         <div>
-                            <div class="form-check">
+                           <div class="form-check">
                                 @foreach ($categories as $category)
                                 <label class="form-check-inline">
                                     <input

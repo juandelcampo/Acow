@@ -162,6 +162,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        Exolnet\Heartbeat\HeartbeatServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -233,6 +234,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Form' => Collective\Html\Formfacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        'Heartbeat' => Exolnet\Heartbeat\HeartbeatFacade::class,
 
     ],
 

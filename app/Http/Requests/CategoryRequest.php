@@ -2,11 +2,10 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Foundation\Http\FormRequest;
 
-class CategoryRequest extends FormRequest
+class CategoryRequest extends Request
 {
     /**
      * Get the validation rules that apply to the request.
@@ -16,11 +15,14 @@ class CategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'category' => 'required|alpha'
+           // 'category' => 'required|alpha'
         ];
     }
 
-    public function failedValidation(Validator $validator)
+    public function messages()
     {
+        return [
+            'category.required' => 'A category is required'
+        ];
     }
 }

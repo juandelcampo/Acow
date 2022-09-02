@@ -2,11 +2,11 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
-use Illuminate\Contracts\Validation\Validator;
 
-class QuoteRequest extends FormRequest
+class QuoteRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -29,7 +29,17 @@ class QuoteRequest extends FormRequest
             'quote' => 'required|string',
             'author_id' => 'required|integer|exists:authors,id',
             'publish_date' => 'required|alpha_dash',
-            'category_id' => 'required|exists: category_quote'
+            'categories' => 'required|exists:category_quote,category_id'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'quote.required' => 'A quote is required',
+            'author_id.required' => 'An author is required',
+            'publish_date.required' => 'A publish date is required',
+            'categories.required' => 'A category is required'
         ];
     }
 
@@ -38,3 +48,4 @@ class QuoteRequest extends FormRequest
 
     }
 }
+

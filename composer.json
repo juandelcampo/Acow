@@ -6,15 +6,16 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "detectlanguage/detectlanguage": "*",
         "doctrine/dbal": "^3.3",
+        "exolnet/laravel-heartbeat": "^1.7",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.4",
         "laravel/framework": "^8.75",
-        "laravel/sanctum": "^2.11",
+        "laravel/sanctum": "*",
         "laravel/tinker": "^2.5",
         "laravelcollective/html": "^6.3",
-        "nesbot/carbon": "^2.57",
-        "detectlanguage/detectlanguage": "*"
+        "nesbot/carbon": "^2.57"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

@@ -5,31 +5,27 @@ namespace App\Http\Controllers\Api;
 use App\Models\Category;
 use App\Http\Requests\CategoryRequest;
 use App\Http\Controllers\Controller;
-
-
-// Code Review
-// Validar que las rutas funcionen con SAD and Happy paths
+use Illuminate\Http\JsonResponse;
 
 class CategoryController extends Controller
 {
-    public function get()
+    public function get():JsonResponse
     {
         return response()->json(['data' => Category::with('quotes')->get()], 200);
     }
 
-    public function add(CategoryRequest $request)
+    public function add(CategoryRequest $request):JsonResponse
     {
-        $request->validated();
+        $request->validateStructure();
         $newCategory = new Category(request()->all());
         $newCategory->save();
 
         return response()->json($newCategory);
     }
 
-
-    public function update(CategoryRequest $request, $categoryId) // Tipar el input y el output
+    public function update(CategoryRequest $request, int $categoryId):JsonResponse
     {
-        $request->validate();
+        $request->validateStructure();
         $data = $request->json()->all();
         $category = Category::find($categoryId);
         $category->update($data);
@@ -37,15 +33,11 @@ class CategoryController extends Controller
         return response()->json($category);
     }
 
-
-    public function delete($categoryId) // Tipar el input y el output
+    public function delete(int $categoryId):JsonResponse
     {
         $category = Category::find($categoryId);
         $result = $category->delete();
 
-        if ($result)
-            return ["result" => "success"];
-        else
-            return ["result" => "fail"]; // Falla cuando no viene id
+        return response()->json(($result) ? 'success' : 'fail');
     }
 }

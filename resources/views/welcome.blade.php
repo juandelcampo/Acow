@@ -27,6 +27,7 @@
             .border-t{border-top-width:1px}.flex{display:flex}.grid{display:grid}.hidden{display:none}
             .items-center{align-items:center}
             .justify-center{justify-content:center}
+            .justify-end{justify-items: end}
             .font-semibold{font-weight:600}.h-5{height:1.25rem}.h-8{height:2rem}.h-16{height:4rem}
             .text-sm{font-size:.875rem}.text-ok{font-size:1.5rem}.text-xl{font-size:2rem}.text-lg{font-size:1.125rem}.leading-7{line-height:1.75rem}
             .mx-auto{margin-left:auto;margin-right:auto}.ml-1{margin-left:.25rem}.mt-2{margin-top:.5rem}
@@ -72,12 +73,17 @@
                 <div  class="w-full  py-x rounded-lg sm\:items-top shadow-lg   text-gray-800" style="max-width: 100%">
                     <img src="images/logo.png"  alt="Logo ACOW"  width = '150' heigth = '150' class="center">
                         <div>
-                            <div id="quote" class="w-full "></div>
-                            <div id='author'class="w-full top-0"></div>
+                            <div  class="w-full ">
+                                <p id="quote" class=' m-0 pt-8 mt-2 text-xl text-gray-900 text-center'></p>
+                            </div>
+                            <div class="w-full top-0 grid justify-end">
+                                <p id='author' class='m-0 text-ok text-gray-700 '></p>
+                            </div>
                         </div>
                 </div>
             </div>
-            <script language='javascript'>
+
+           {{--  /*
             $.ajax({
                 type: 'GET',  // Envío con método GET
                 url: 'http://127.0.0.1:8000/api/quotes/todayquote',  // Fichero destino (el PHP que trata los datos)
@@ -92,10 +98,37 @@
             ).fail(function (jqXHR, textStatus, errorThrown){ // Función que se ejecuta si algo ha ido mal
                 // Mostramos en consola el mensaje con el error que se ha producido
                 $("#consola").html("The following error occured: "+ textStatus +" "+ errorThrown);
-            });
-        </script>
-        <script>
+            });*/--}}
 
-        </script>
+
+            <script language='javascript'>
+                function getQuote()
+                {
+                    $.ajax({
+                        type: 'GET',  // Envío con método GET
+                        url: 'http://127.0.0.1:8000/api/quotes/randomquote',  // Fichero destino (el PHP que trata los datos)
+                    })
+                    .done(
+                        function( api )
+                        {  // Función que se ejecuta si todo ha ido bien
+                            let author = api.author;
+                            let quote = api.quote;
+
+                            $( "#quote" ).html( quote );
+                            $( "#author" ).html( author );
+                        }
+                    )
+                    .fail(
+                        function (jqXHR, textStatus, errorThrown)
+                        { // Función que se ejecuta si algo ha ido mal
+                            // Mostramos en consola el mensaje con el error que se ha producido
+                            $("#consola").html("The following error occured: "+ textStatus +" "+ errorThrown);
+                        }
+                    );
+                }
+                getQuote();
+                setInterval( () => getQuote(), 10000);
+            </script>
+
     </body>
 </html>

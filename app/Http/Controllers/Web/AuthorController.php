@@ -22,7 +22,7 @@ class AuthorController extends Controller
 
     public function store(AuthorRequest $request)
     {
-        $request->validated();
+        $request->validateStructure();
         Author::create($request->all());
 
         return redirect()->route('authors.index')->with('success','Author created successfully.');
@@ -36,7 +36,7 @@ class AuthorController extends Controller
 
     public function update(AuthorRequest $request, Author $author)
     {
-        $request->validated();
+        $request->validateStructure();
         $author = Author::find($request->id);
         $author->author = $request->author;
         $author->lifetime = $request->lifetime;
