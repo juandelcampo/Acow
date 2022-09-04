@@ -1,0 +1,52 @@
+@font-face {
+    font-family: 'Marvin Visions Variable';
+    src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/756881/MarvinVisionsTrial-Variable.ttf");
+  }
+
+  @font-face {
+	src: url('https://res.cloudinary.com/dr6lvwubh/raw/upload/v1529908256/CompressaPRO-GX.woff2');
+	font-family:'Compressa VF';
+	font-style: normal;
+}
+
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+
+
+  .letter-quote {
+    /* --weight: 10; */
+    /* padding: 0; */
+    font-family: 'Marvin Visions Variable';
+    font-size: 10rem;
+    font-weight: 300;
+    padding-top: 1rem;
+    /* background-size: contain; */
+    line-height: 0.8;
+    text-align: center;
+    flex-wrap: wrap;
+    justify-content: stretch;
+  }
+  .letter-author {
+    /* --weight: 10; */
+    /* padding: 0; */
+    font-family: 'Bebas Neue';
+    padding-top: 1rem;
+    font-size: 4rem;
+    font-weight: 100;
+    /* background-size: contain; */
+    line-height: 0.8;
+    text-align: center;
+    flex-wrap: wrap;
+    justify-content: stretch;
+  }
+
+  .letter-header {
+    /* --weight: 10; */
+    /* padding: 0; */
+    font-family: 'Roboto';
+    font-size: 2rem;
+    font-weight: 1;
+    /* background-size: contain; */
+    line-height: 0.8;
+  }
+ /* ----------------*/

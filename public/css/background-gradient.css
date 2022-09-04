@@ -1,0 +1,20 @@
+ /*Background Gradient*/
+ ::-webkit-scrollbar {
+    display: none;
+  }
+
+  body {
+    margin: 0%;
+    overflow: hidden;
+    background: rgb(20  , 25, 45);
+  }
+
+
+  canvas {
+    display: block;
+    background:hsl(222, 25%, 20%);
+  }
+  canvas {
+    position: absolute;
+    z-index: -1;
+  }
