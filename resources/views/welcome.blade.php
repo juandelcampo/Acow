@@ -10,11 +10,15 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@1,500&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+
 
 
         <!-- Styles -->
         <style>
             /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+
+
             html{line-height:1.15;-webkit-text-size-adjust:100%} body{margin:0}
             html{font-family: system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;line-height:1.5},
             a{background-color:transparent}[hidden]{display:none}{font-family: 'Nunito', sans-serif}
@@ -50,43 +54,58 @@
             .sm\:items-center{align-items:center}.sm\:justify-start{justify-content:flex-start}
             .sm\:justify-between{justify-content:space-between}.sm\:h-20{height:5rem}.sm\:ml-0{margin-left:0}.sm\:px-6{padding-left:1.5rem;padding-right:1.5rem}.sm\:pt-0{padding-top:0}.sm\:text-left{text-align:left}
             .sm\:text-right{text-align:right}}@media (min-width:768px){.md\:border-t-0{border-top-width:0}.md\:border-l{border-left-width:1px}.md\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}}@media (min-width:1024px){.lg\:px-8{padding-left:2rem;padding-right:2rem}}@media (prefers-color-scheme:dark){.dark\:bg-gray-800{--bg-opacity:1;background-color:#2d3748;background-color:rgba(45,55,72,var(--bg-opacity))}.dark\:bg-gray-900{--bg-opacity:1;background-color:#1a202c;background-color:rgba(26,32,44,var(--bg-opacity))}.dark\:border-gray-700{--border-opacity:1;border-color:#4a5568;border-color:rgba(74,85,104,var(--border-opacity))}.dark\:text-white{--text-opacity:1;color:#fff;color:rgba(255,255,255,var(--text-opacity))}.dark\:text-gray-400{--text-opacity:1;color:#cbd5e0;color:rgba(203,213,224,var(--text-opacity))}.dark\:text-gray-500{--tw-text-opacity:1;color:#6b7280;color:rgba(107,114,128,var(--tw-text-opacity))}}
-        </style>
+
+            body {
+                background: linear-gradient(-45deg, #d6c8c5, #e9dbe0, #c1ced3, #c7d6d3);
+                background-size: 400% 400%;
+                animation: gradient 60s ease infinite;
+                height: 100vh;
+            }
+
+            @keyframes gradient {
+                0% {
+                background-position: 0% 50%;
+                }
+                50% {
+                background-position: 100% 50%;
+                }
+                100% {
+                background-position: 0% 50%;
+                }
+            }
+
+
+       </style>
 
 
         <script type="text/javascript" src="/js/jquery-3.6.0.min.js"></script>
     </head>
-    <body class="antialiased">
-        <div style="max-width: 100%" class="relative flex justify-center items-top  min-h-screen bg-gray-100 dark:bg-gray-900   sm:pt-0 ">
-            <div class=" fixed top-0 left-0 px-6 py-3 sm:block">
-                <p>A calendar of Wisdom</p>
-            </div>
 
-            @if (Route::has('login'))
-                <div class="fixed top-0 right-0 px-6 py-4 sm:block">
-                    @auth
-                        <a href="{{ url('/dashboard') }}" class=" text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
-                    @else
-                        <a href="{{ route('login') }}" class=" text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-            <div object-position: top class="min-w-screen min-h-screen flex sm\:items-center  items-center justify-center ">
-                <div  class="w-full  py-x rounded-lg sm\:items-top shadow-lg   text-gray-800" style="max-width: 100%">
-                    <img src="images/logo.png"  alt="Logo ACOW"  width = '150' heigth = '150' class="center">
-                        <div>
-                            <div  class="w-full ">
-                                <p id="quote" class=' m-0 pt-8 mt-2 text-xl text-gray-900 text-center'></p>
+
+    <body >
+
+
+                    <div style="max-width: 100%" class="relative flex justify-center items-top  min-h-screen bg-gray-100 dark:bg-gray-900   sm:pt-0 ">
+                            <div class=" fixed top-0 left-0 px-6 py-3 sm:block">
+                                <p>A calendar of Wisdom</p>
                             </div>
-                            <div class="w-full top-0 grid justify-end">
-                                <p id='author' class='m-0 text-ok text-gray-700 '></p>
-                            </div>
+
+
+        {{-- IMAGE - QUOTE - AUTHOR --}}
+                                    <div object-position: top class="min-w-screen min-h-screen flex sm\:items-center  items-center justify-center ">
+                                        <div  class="w-full  py-x rounded-lg sm\:items-top shadow-lg   text-gray-800" style="max-width: 100%">
+                                            <img src="images/logo.png"  alt="Logo ACOW"  width = '150' heigth = '150' class="center">
+                                                <div>
+                                                    <div  class="w-full ">
+                                                        <p id="quote" class=' m-0 pt-8 mt-2 text-xl text-gray-900 text-center'></p>
+                                                    </div>
+                                                    <div class="w-full top-0 grid justify-end">
+                                                        <p id='author' class='m-0 text-ok text-gray-700 '></p>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                    </div>
                         </div>
-                </div>
-            </div>
-
            {{--  /*
             $.ajax({
                 type: 'GET',  // Envío con método GET
@@ -95,7 +114,6 @@
                 function( api ) {  // Función que se ejecuta si todo ha ido bien
                     let author = api.author;
                     let quote = api.quote;
-
                     $( "#quote" ).append( "<p class=' m-0 pt-8 mt-2 text-xl text-gray-900 text-center '>"+quote+"</p>" );
                     $( "#author" ).append( "<p class='m-0 text-ok text-gray-700   sm\:text-right '>"+author+"</p>" );
                 }
@@ -117,7 +135,6 @@
                         {  // Función que se ejecuta si todo ha ido bien
                             let author = api.author;
                             let quote = api.quote;
-
                             $( "#quote" ).html( quote );
                             $( "#author" ).html( author );
                         }

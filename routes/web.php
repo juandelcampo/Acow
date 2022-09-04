@@ -10,9 +10,9 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get ('/', function (){
 
-    return view('welcome');
+    return view('welcome4');
 });
-Route::get('/dashboard', function (){
+Route::get('/admin', function (){
     $user = Auth::user()->name;
     return view('dashboard', ['user' => $user]);
     })->middleware(['auth'])->name ('dashboard');
