@@ -1,8 +1,8 @@
  /*Tailwind*/
 
+ html { overflow-y: scroll; overflow-x:hidden; }
+:after,:before{/* box-sizing:border-box; */border:0 solid #e2e8f0;}
 
-:after,:before{ box-sizing:border-box;  border:0 solid #e2e8f0; }
-.a{color:inherit;text-decoration:inherit}
 
 .bg-white{--bg-opacity:1;background-color:#fff;background-color:rgba(255,255,255,var(--bg-opacity))}
 .bg-gray-100{--bg-opacity:1;background-color:#f7fafc;background-color:rgba(247,250,252,var(--bg-opacity))}
@@ -51,9 +51,10 @@
 .p-6{padding:1.5rem}
 .p-7{padding:0.75rem}
 .py-4{padding-top:1rem;padding-bottom:1rem}
+.py-5{padding-top:5rem;padding-bottom:5rem}
 .py-x{padding-bottom:11rem}
 .px-6{padding-left:1.5rem;padding-right:1.5rem}
-.pt-8{padding-top:1rem}
+.pt-8{padding-top:1rem;}
 .pt-100{padding-top:10rem;}
 .pt-50{padding-top:5rem;}
 .py-w{padding-bottom:10rem;}
@@ -122,9 +123,7 @@
 ul#menu-topo {
   margin: 60 auto;
   padding: 10px, 20px;
-
   list-style-type: none;
-
   font-family: 'Montserrat', sans-serif;
   font-size: 1em;
   text-align: center;
@@ -144,15 +143,63 @@ ul#menu-topo li a {
   margin-right: 10px;
   margin-left: 10px;
   padding: 10px 20px;
-  text-decoration: none;
+  /* text-decoration: none; */
+
 }
 
 .test {
     display: inline-block;
 }
 
+#doc-text {
+    font-family: 'Exo', sans-serif;
+    font-size:1rem;
+    letter-spacing: 1px;
+    line-height:1.5;
+
+    font-weight:300;
+    align-content:center;
+    margin-right: 15rem;
+    margin-left: 15rem;
+    margin-top:2rem;
+
+}
+
+.list-of-authors {
+    font-family: 'Bebas Neue';
+    font-size: 4rem;
+    font-weight: 100;
+    background-size: contain;
+    line-height: 0.8;
+    text-align: center;
+    flex-wrap: wrap;
+    justify-content: stretch;
+    color: black;
+    font-weight:300;
+    align-content:center;
+
+    display: inline;
+    /* text-align: center; */
+}
+
+ul#list-of-authors li a{
+
+    margin-right: 15rem;
+    margin-left: 15rem;
 
 
+  }
+
+  .list-hori {
+    display: inline;
+    text-align: center;
+  }
+
+  .margin-x{
+    margin-right: 10rem;
+    margin-left: 10rem;
+    text-align: justify;
 
 
+  }
 

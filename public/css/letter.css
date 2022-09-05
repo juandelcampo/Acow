@@ -25,19 +25,21 @@
     text-align: center;
     flex-wrap: wrap;
     justify-content: stretch;
+    color: black;
   }
   .letter-author {
-    /* --weight: 10; */
-    /* padding: 0; */
+    --weight: 10;
+    padding: 0;
     font-family: 'Bebas Neue';
     padding-top: 1rem;
     font-size: 4rem;
     font-weight: 100;
-    /* background-size: contain; */
+    background-size: contain;
     line-height: 0.8;
     text-align: center;
     flex-wrap: wrap;
     justify-content: stretch;
+    color: black;
   }
 
   .letter-header {
@@ -48,5 +50,18 @@
     font-weight: 1;
     /* background-size: contain; */
     line-height: 0.8;
+    color: white;
+
+    #list-of-authors {
+        font-family: 'Bebas Neue';
+        font-size: 4rem;
+        font-weight: 100;
+        background-size: contain;
+        line-height: 0.8;
+        text-align: center;
+        flex-wrap: wrap;
+        justify-content: stretch;
+        color: black;
+
   }
  /* ----------------*/

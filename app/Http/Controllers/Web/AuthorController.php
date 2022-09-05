@@ -54,4 +54,10 @@ class AuthorController extends Controller
 
         return redirect()->route('authors.index')->with('success', 'Author deleted successfully');
     }
+
+    public function listOfAuthors()
+    {
+        $authors = Author::orderBy('author')->get();
+        return view('list-of-authors', ['authors' => $authors]);
+    }
 }
