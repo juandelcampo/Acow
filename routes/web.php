@@ -5,19 +5,32 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\QuoteController;
 use App\Http\Controllers\Web\AuthorController;
 use App\Http\Controllers\Web\CategoryController;
+use App\Http\Controllers\Web\ApiDocsController;
 use App\Http\Requests\Request;
 use Illuminate\Support\Facades\Auth;
 
 Route::get ('/', function (){
 
-    return view('welcome4');
+    return view('welcome');
 });
+
+Route::get ('/docs', function (){
+
+    return view('docs');
+});
+
+Route::get ('/list-of-authors', [AuthorController::class, 'listOfAuthors']);
+
+
+
 Route::get('/admin', function (){
     $user = Auth::user()->name;
     return view('dashboard', ['user' => $user]);
     })->middleware(['auth'])->name ('dashboard');
 
 require __DIR__.'/auth.php';
+
+
 
 Route::prefix('authors')->group(function(){
 //    dd('authors');
