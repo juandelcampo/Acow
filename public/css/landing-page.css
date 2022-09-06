@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe&family=Bebas+Neue&family=Comfortaa:wght@300&family=Gantari:wght@200&display=swap');
  /*Tailwind*/
 
  html { overflow-y: scroll; overflow-x:hidden; }
@@ -124,13 +125,13 @@ ul#menu-topo {
   margin: 60 auto;
   padding: 10px, 20px;
   list-style-type: none;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1em;
+  font-family: 'Gantari', sans-serif;
+  font-size: 1.5em;
   text-align: center;
   text-transform: uppercase;
   flex-wrap: wrap;
   justify-content: stretch;
-
+  font-weight: 500;
 }
 
 ul#menu-topo li {
@@ -156,7 +157,6 @@ ul#menu-topo li a {
     font-size:1rem;
     letter-spacing: 1px;
     line-height:1.5;
-
     font-weight:300;
     align-content:center;
     margin-right: 15rem;
@@ -177,20 +177,40 @@ ul#menu-topo li a {
     color: black;
     font-weight:300;
     align-content:center;
-
     display: inline;
     /* text-align: center; */
 }
+
+.list-of-authors-mini {
+    font-family: 'Bebas Neue';
+    font-size: 2rem;
+    font-weight: 100;
+    background-size: contain;
+    line-height: 3rem;
+    text-align: center;
+    flex-wrap: wrap;
+    justify-content: stretch;
+    color: black;
+    font-weight:300;
+    align-content:center;
+    display: run-in;
+
+    /* text-align: center; */
+}
+
 
 ul#list-of-authors li a{
 
     margin-right: 15rem;
     margin-left: 15rem;
-
-
   }
 
   .list-hori {
+    display: inline;
+    text-align: center;
+  }
+
+  .list-hori2 {
     display: inline;
     text-align: center;
   }
@@ -199,7 +219,131 @@ ul#list-of-authors li a{
     margin-right: 10rem;
     margin-left: 10rem;
     text-align: justify;
+  }
 
+  :root {
+    --color-secondary: #333;
+  }
 
+  /* main */
+
+  #main-doc {
+    flex: 1 1 82%;
+    overflow-y: auto;
+    align-items: center;
+    align-content: center;
+    display: block;
+    margin: auto;
+  }
+
+  /* main-section */
+  .main-section {
+
+    width: 60%;
+    background: #fff;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    align-items: center;
+    align-content: center;
+    display: block;
+    margin: auto;
+  }
+
+  .main-section header {
+    text-transform: uppercase;
+
+    font-size: 2.5rem;
+    font-family: 'Bebas Neue';
+    display: inline-block;
+  }
+
+.var{
+    padding-top: 2rem;
+
+}
+  /* code */
+  .code {
+    white-space: pre-line;
+  }
+
+  /*editor */
+  .editor {
+    background-color: #333;
+    border-left: 0.7rem solid ;
+  }
+
+  .editor .keyword {
+    color: #ffa759;
+  }
+
+  .editor .str {
+    color: #bae67e;
+  }
+
+  .editor .val {
+    color: rgb(212, 214, 123);
+  }
+
+  .editor .func {
+    color: #ffd580;
+  }
+
+  .editor .req {
+    color: #f28779;
+  }
+
+  .editor .var {
+    color: #cbccc6;
+  }
+
+  .editor .arg {
+    color: #9bceec;
+  }
+
+  /* media queries */
+
+  @media screen and (max-width: 800px) {
+    html {
+      font-size: 57%;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    html {
+      font-size: 55.5%;
+    }
+  }
+
+  @media screen and (max-width: 450px) {
+    #main-doc {
+      padding: 1.5rem;
+    }
+
+    article {
+      padding-left: 0;
+    }
+
+    .editor {
+      overflow: auto;
+    }
+  }
+
+  p{
+    margin: 60 auto;
+    list-style-type: none;
+    font-family: 'Gantari', sans-serif;
+    font-size: 1.2rem;
+    line-height: normal;
+    text-align: left;
+    flex-wrap: wrap;
+    justify-content: stretch;
+  }
+
+  .padding-left{
+    padding-left:1rem;
+  }
+
+  .code{
+    font-size: 0.9rem;
   }
 

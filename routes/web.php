@@ -20,6 +20,7 @@ Route::get ('/docs', function (){
 });
 
 Route::get ('/list-of-authors', [AuthorController::class, 'listOfAuthors']);
+Route::get('/authors/{authorId}', [AuthorController::class, 'authorQuotes']);
 
 
 
@@ -40,6 +41,7 @@ Route::prefix('authors')->group(function(){
     Route::get('edit/{authorId}', [AuthorController::class, 'edit'])->name('authors.edit');
     Route::post('update/{authorId}', [AuthorController::class, 'update'])->name('authors.update');
     Route::get('delete/{authorId}', [AuthorController::class, 'delete'])->name('authors.delete');
+
 });
 
 Route::prefix('categories')->group(function(){
