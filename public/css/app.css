@@ -5,7 +5,7 @@
   /* box-sizing: border-box; */ /* 1 */
   /* border-width: 0; */ /* 2 */
   /* border-style: solid; */ /* 2 */
-  /* border-color: #e5e7eb; */ /* 2 */
+  border-color: #e5e7eb; /* 2 */
 }
 
 ::before,
@@ -21,11 +21,11 @@
 */
 
 html {
-  line-height: 1.5; /* 1 */
+  /* line-height: 1.5; */ /* 1 */
   -webkit-text-size-adjust: 100%; /* 2 */
   -moz-tab-size: 4; /* 3 */
   -o-tab-size: 4;
-     tab-size: 4; /* 3 */
+  tab-size: 4; /* 3 */
   font-family: Nunito, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; /* 4 */
 }
 
@@ -158,10 +158,10 @@ select,
 textarea {
   font-family: inherit; /* 1 */
   font-size: 100%; /* 1 */
-  line-height: inherit; /* 1 */
-  color: inherit; /* 1 */
-  margin: 0; /* 2 */
-  padding: 0; /* 3 */
+  /* line-height: inherit; */ /* 1 */
+  /* color: inherit; */ /* 1 */
+  /* margin: 0; */ /* 2 */
+  /* padding: 0; */ /* 3 */
 }
 
 /*
@@ -184,7 +184,7 @@ button,
 [type='submit'] {
   -webkit-appearance: button; /* 1 */
   background-color: transparent; /* 2 */
-  background-image: none; /* 2 */
+  background-image: none;*/
 }
 
 /*
@@ -328,7 +328,7 @@ Set the default cursor for buttons.
 
 button,
 [role="button"] {
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 
 /*
@@ -550,7 +550,7 @@ select {
   /* --tw-translate-y: 0; */
   /* --tw-rotate: 0; */
   /* --tw-skew-x: 0; */
-  --tw-skew-y: 0;
+  /* --tw-skew-y: 0; */
   /* --tw-scale-x: 1; */
   --tw-scale-y: 1;
   --tw-pan-x:  ;
@@ -810,6 +810,8 @@ select {
 }
 .flex {
   display: flex;
+  flex-direction: row;
+  align-content: center;
 }
 .inline-flex {
   display: inline-flex;
@@ -871,7 +873,7 @@ select {
   width: auto;
 }
 .w-full {
-  width: 100%;
+  /* width: 100%; */
 }
 .w-12 {
   width: 3rem;
@@ -1111,6 +1113,10 @@ select {
   --tw-bg-opacity: 1;
   background-color: rgb(31 41 55 / var(--tw-bg-opacity));
 }
+.bg-gray-1000 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(33 33 33 / var(--tw-bg-opacity));
+}
 .bg-indigo-50 {
   --tw-bg-opacity: 1;
   background-color: rgb(238 242 255 / var(--tw-bg-opacity));
@@ -1170,6 +1176,10 @@ select {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
 }
+.px-43 {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
 .py-3 {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
@@ -1213,6 +1223,9 @@ select {
 .pt-8 {
   padding-top: 2rem;
 }
+.pt-3 {
+    padding-top: 3rem;
+}
 .pt-16 {
   padding-top: 4rem;
 }
@@ -1223,11 +1236,14 @@ select {
   padding-right: 3rem;
 }
 .pt-6 {
-  padding-top: 1.5rem;
+  padding-top: 1rem;
 }
 .pb-20 {
   padding-bottom: 5rem;
 }
+.pb-30 {
+    padding-bottom: 3rem;
+  }
 .pl-3 {
   padding-left: 0.75rem;
 }
@@ -1426,8 +1442,10 @@ select {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 .shadow-md {
-  --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
+  --tw-shadow: 0 4px 6px -1px
+  rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 4px 6px -1px
+  var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 .outline-none {
@@ -1451,14 +1469,14 @@ select {
   --tw-ring-opacity: 0.05;
 }
 .transition {
-  transition-property: color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  /* transition-property: color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter; */
+  /* transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter; */
+  /* transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter; */
+  /* transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); */
   transition-duration: 150ms;
 }
 .duration-150 {
-  transition-duration: 150ms;
+  /* transition-duration: 150ms; */
 }
 .duration-200 {
   transition-duration: 200ms;
@@ -1467,7 +1485,7 @@ select {
   transition-duration: 75ms;
 }
 .ease-in-out {
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  /* transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); */
 }
 .ease-out {
   transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
@@ -1508,8 +1526,8 @@ select {
   color: rgb(31 41 55 / var(--tw-text-opacity));
 }
 .hover\:text-gray-700:hover {
-  --tw-text-opacity: 1;
-  color: rgb(55 65 81 / var(--tw-text-opacity));
+  /* --tw-text-opacity: 1; */
+  /* color: rgb(55 65 81 / var(--tw-text-opacity)); */
 }
 .hover\:text-indigo-600:hover {
   --tw-text-opacity: 1;

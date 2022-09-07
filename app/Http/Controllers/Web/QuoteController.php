@@ -93,4 +93,6 @@ class QuoteController extends Controller
             'advices' => json_decode($advices)
         ]);
     }
+
+
 }

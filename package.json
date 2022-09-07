@@ -24,6 +24,7 @@
         "webpack-laravel-mix-manifest": "^3.1.2"
     },
     "dependencies": {
+        "animejs": "^3.2.1",
         "cross-env": "^7.0.3",
         "n": "^8.2.0",
         "stable": "^0.1.8"

@@ -6,72 +6,55 @@
         <meta name="viewport" content="width=device-width, initial-scale=1,
         maximum-scale=1, user-scalable=0">
         <title>IQAA</title>
-
         <link rel="stylesheet" href="{{ asset('css/background-gradient.css') }}">
         <link rel="stylesheet" href="{{ asset('css/landing-page.css') }}">
         <link rel="stylesheet" href="{{ asset('css/letter.css') }}">
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Unica+One&display=swap">
         <script src="{{ asset('js/background-gradient.js') }}" defer></script>
         <script src="{{ asset('js/letter.js') }}" defer></script>
-
         <script type="text/javascript" src="/js/jquery-3.6.0.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-        <style>
-            @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Unica+One&display=swap');
-            </style>
 </head>
-
-<body>
+<body class="overflow">
     <main>
         <canvas></canvas>
         <header class="nav-menu">
-
             <ul id="menu-topo" class= "pt-8">
-                <li class="nav-item"><a href="#">Submit a Quote</a></li>
+                <li class="nav-item"><a href="{{ __('create') }}">CREATE</a></li>
                 <li >•</li>
-                <li class="nav-item"><a href="https://juanylosdelcampo.bandcamp.com/" target="_blank">About</a></li>
+                <li class="nav-item"><a href="{{ __('about') }}">About</a></li>
                 <li >•</li>
                 <li class="nav-item"><a href="{{ __('docs') }}">API</a></li>
                 <li >•</li>
-                <li class="nav-item"><a href="{{ __('/list-of-authors') }}">List of Authors</a></li>
+                <li class="nav-item"><a href="{{ __('/list-of-authors') }}">Authors</a></li>
             </ul>
-
-          </header>
-
-
-
-            <div style="max-width: 100%" class="relative ">
-
+        </header>
         <section >
-            <div class="  flex  py-5 items-center content-center justify-center ">
-                <div>
-                    <a href="{{ __('/') }}"><img  src="images/logo.png"  alt="Logo ACOW"  width = '200' heigth = '200' class="center py-5"></a>
-                        <div>
-
-                            <div class="max-w-5xl">
-                                <p id="quote" class=' letter-quote'></p>
-                                <p id='author' class='letter-author pt-8 '></p>
+            <div style="max-width: 100%" class="relative ">
+                <div class="flex py-5 items-center content-center justify-center ">
+                    <div>
+                        <a href="{{ __('/') }}"><img src="images/logo.png" alt="Logo ACOW"  width = '200' class="center py-5 btn-animate "></a>
+                            <div>
+                                <div class="max-w-5xl">
+                                    <p id="quote" class=' letter-quote'></p>
+                                    <p id='author' class='letter-author pt-8 '></p>
+                                </div>
                             </div>
-                        </div>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
-
-
-
-
-
     <script language='javascript'>
         function getQuote()
         {
         $.ajax({
-            type: 'GET',  // Envío con método GET
-                url: 'http://127.0.0.1:8000/api/quotes/randomquote',  // Fichero destino (el PHP que trata los datos)
+            type: 'GET',
+                url: 'http://127.0.0.1:8000/api/quotes/randomquote',
             })
             .done(
-                function( api )
+                function(api)
                 {
                     let author = api.author;
                     let quote = api.quote;

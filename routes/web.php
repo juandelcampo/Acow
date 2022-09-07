@@ -10,18 +10,23 @@ use App\Http\Requests\Request;
 use Illuminate\Support\Facades\Auth;
 
 Route::get ('/', function (){
-
     return view('welcome');
 });
 
 Route::get ('/docs', function (){
-
     return view('docs');
 });
 
+Route::get ('/create', function (){
+    return view('create');
+});
+
+Route::get ('/about', function (){
+    return view('about');
+});
+
 Route::get ('/list-of-authors', [AuthorController::class, 'listOfAuthors']);
-
-
+Route::get('/author/{authorId}', [AuthorController::class, 'authorQuotes']);
 
 Route::get('/admin', function (){
     $user = Auth::user()->name;
@@ -29,8 +34,6 @@ Route::get('/admin', function (){
     })->middleware(['auth'])->name ('dashboard');
 
 require __DIR__.'/auth.php';
-
-
 
 Route::prefix('authors')->group(function(){
 //    dd('authors');

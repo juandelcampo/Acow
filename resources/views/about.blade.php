@@ -3,15 +3,16 @@
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome1"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+        <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=0">
         <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.png') }}">
-        <title>Authors</title>
+        <title>About</title>
         <link rel="stylesheet" href="{{ asset('css/landing-page.css') }}">
         <link rel="stylesheet" href="{{ asset('css/letter.css') }}">
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Unica+One&display=swap">
-        <script src="{{ asset('js/background-gradient.js') }}" defer></script>
+        <script src="{{ asset('js/docs.js') }}" defer></script>
         <script src="{{ asset('js/letter.js') }}" defer></script>
+        <script src="{{ asset('js/app.js') }}" defer></script>
         <script type="text/javascript" src="/js/jquery-3.6.0.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 </head>
@@ -21,11 +22,11 @@
             <ul id="menu-topo" class= "pt-8">
                 <li class="nav-item"><a href="#">CREATE</a></li>
                 <li >•</li>
-                <li class="nav-item"><a href="{{ __('about') }}">About</a></li>
+                <li class="nav-item"><a href="{{ __('about') }}">ABOUT</a></li>
                 <li >•</li>
                 <li class="nav-item"><a href="{{ __('docs') }}">API</a></li>
                 <li >•</li>
-                <li class="nav-item"><a href="{{ __('/list-of-authors') }}">Authors</a></li>
+                <li class="nav-item"><a href="{{ __('/list-of-authors') }}">AUTHORS</a></li>
             </ul>
         </header>
         <section >
@@ -35,15 +36,16 @@
                 </div>
             </div>
         </section>
-        <section class="pt-8 margin-x ">
-            <div class="list-of-authors justify-center items-center justify-center content-center ">
-                <ul class=" list-hori">
-                    @foreach($authors as $author)
-                    <a href="{{ __('author/').$author['id']}}"> <li class="list-hori" >{{$author['author']}}</li></a>
-                    <li class="list-hori">•</li>
-                    @endforeach
-                <ul>
+        <section>
+            <div>
+                <p class="pt-8 letter-quote-about justify-center items-center content-center pt-100 about-font">
+                        curated by
+                    <a href="https://juanylosdelcampo.bandcamp.com/" target="blank">
+                        <span class="font-pink">Juan del Campo</span></a>
+                        and
+                    <a href="https://www.instagram.com/laszlo.estudio/" target="blank">
+                        <span class="font-light-blue">Laszlo Studio</span></a>
+                </p>
             </div>
         </section>
-    </main>
 </body>

@@ -17,8 +17,8 @@
                     </div>
                 @endif
         </div>
-        <div class="max-w-7xl mx-auto bg-white shadow-sm sm:rounded-lg py-2 flex min-w-full sm:px-6 lg:px-8 content-center">
-            <table class="table-categories  content-center">
+        <div class=" items-center bg-white shadow-sm sm:rounded-lg content-center">
+            <table class="table-categories margin-left justify-center  content-center">
                 <thead class="border-b">
                     <tr>
                         <th scope="col" class=" width-id text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
