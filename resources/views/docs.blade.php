@@ -16,17 +16,18 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
         <script type="text/javascript" src="/js/jquery-3.6.0.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+</head>
 <body class="overflow">
     <main>
         <header class="nav-menu">
             <ul id="menu-topo" class= "pt-8">
-                <li class="nav-item"><a href="#">Submit a Quote</a></li>
+                <li class="nav-item"><a href="{{ __('create') }}">CREATE</a></li>
                 <li >•</li>
-                <li class="nav-item"><a href="https://juanylosdelcampo.bandcamp.com/" target="_blank">About</a></li>
+                <li class="nav-item"><a href="{{ __('about') }}">About</a></li>
                 <li >•</li>
                 <li class="nav-item"><a href="{{ __('docs') }}">API</a></li>
                 <li >•</li>
-                <li class="nav-item"><a href="{{ __('/list-of-authors') }}">List of Authors</a></li>
+                <li class="nav-item"><a href="{{ __('/list-of-authors') }}">Authors</a></li>
             </ul>
         </header>
         <section >
@@ -41,11 +42,12 @@
             <section class="main-section" id="Introduction">
                 <header class="pt-8">0. Introduction</header>
                 <article>
-                <p class="pb-3">The Quotes API is an easy to use data feed for your website or app. Developers love integrating API's into their projects.
-                    <br>Some common use cases include start pages, Discord bots, mental health apps, and IoT devices.</p>
-                <p class="pb-3">It is our goal to provide a quality, reliable API for artists that both inspires and provokes thought. Our collection of quotes are specially curated looking for artists seeking for inspiration.  In this guide we will go over each available call option and best practices for development. Please note that you may need an API key and active subscription to get a response from some options.
-                </p>
-            </article>
+                    <p class="pb-3">The Quotes API is an easy to use data feed for your website or app. Developers love integrating API's into their projects.
+                        <br>Some common use cases include start pages, Discord bots, mental health apps, and IoT devices.</p>
+                    <p class="pb-3">It is our goal to provide a quality, reliable API for artists that both inspires and provokes thought. Our collection of quotes are specially curated looking for artists seeking for inspiration.  In this guide we will go over each available call option and best practices for development. Please note that you may need an API key and active subscription to get a response from some options.
+                    </p>
+                </article>
+            </section>
         </section>
         <section class="main-section" id="Introduction">
             <header class="pt-8">1. Basic API Structure</header>

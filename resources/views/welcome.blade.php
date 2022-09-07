@@ -21,20 +21,20 @@
         <canvas></canvas>
         <header class="nav-menu">
             <ul id="menu-topo" class= "pt-8">
-                <li class="nav-item"><a href="#">Submit a Quote</a></li>
+                <li class="nav-item"><a href="{{ __('create') }}">CREATE</a></li>
                 <li >•</li>
-                <li class="nav-item"><a href="https://juanylosdelcampo.bandcamp.com/" target="_blank">About</a></li>
+                <li class="nav-item"><a href="{{ __('about') }}">About</a></li>
                 <li >•</li>
                 <li class="nav-item"><a href="{{ __('docs') }}">API</a></li>
                 <li >•</li>
-                <li class="nav-item"><a href="{{ __('/list-of-authors') }}">List of Authors</a></li>
+                <li class="nav-item"><a href="{{ __('/list-of-authors') }}">Authors</a></li>
             </ul>
         </header>
         <section >
             <div style="max-width: 100%" class="relative ">
                 <div class="flex py-5 items-center content-center justify-center ">
                     <div>
-                        <a href="{{ __('/') }}"><img src="images/logo.png" alt="Logo ACOW"  width = '200' heigth = '200' class="center py-5"></a>
+                        <a href="{{ __('/') }}"><img src="images/logo.png" alt="Logo ACOW"  width = '200' class="center py-5 btn-animate "></a>
                             <div>
                                 <div class="max-w-5xl">
                                     <p id="quote" class=' letter-quote'></p>

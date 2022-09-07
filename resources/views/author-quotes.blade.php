@@ -21,11 +21,11 @@
             <ul id="menu-topo" class= "pt-8">
                 <li class="nav-item"><a href="#">Submit a Quote</a></li>
                 <li >•</li>
-                <li class="nav-item"><a href="https://juanylosdelcampo.bandcamp.com/" target="_blank">About</a></li>
+                <li class="nav-item"><a href="{{('/about') }}">About</a></li>
                 <li >•</li>
-                <li class="nav-item"><a href="{{ __('docs') }}">API</a></li>
+                <li class="nav-item"><a href="{{('/docs') }}">API</a></li>
                 <li >•</li>
-                <li class="nav-item"><a href="{{ __('/list-of-authors') }}">List of Authors</a></li>
+                <li class="nav-item"><a href="{{('/list-of-authors') }}">Authors</a></li>
             </ul>
         </header>
         <section >
@@ -37,7 +37,7 @@
         </section>
         <section class="pt-8 margin-x ">
             <div class="title-author justify-center items-center justify-center content-center ">
-                <header >{{$author['author']}}</header>
+             <header >{{$author['author']}}</header>
             </div>
             <div id="list-of-authors">
                 <ul>
