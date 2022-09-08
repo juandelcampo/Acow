@@ -6,37 +6,19 @@
         <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=0">
         <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.png') }}">
         <title>API DOCS</title>
-        <link rel="stylesheet" href="{{ asset('css/landing-page.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/letter.css') }}">
+
+        <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Unica+One&display=swap">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe&family=Bebas+Neue&family=Comfortaa:wght@300&display=swap">
-        <script src="{{ asset('js/background-gradient.js') }}" defer></script>
-        <script src="{{ asset('js/docs.js') }}" defer></script>
         <script src="{{ asset('js/app.js') }}" defer></script>
         <script type="text/javascript" src="/js/jquery-3.6.0.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 </head>
 <body class="overflow">
     <main>
-        <header class="nav-menu">
-            <ul id="menu-topo" class= "pt-8">
-                <li class="nav-item"><a href="{{ __('create') }}">CREATE</a></li>
-                <li >•</li>
-                <li class="nav-item"><a href="{{ __('about') }}">About</a></li>
-                <li >•</li>
-                <li class="nav-item"><a href="{{ __('docs') }}">API</a></li>
-                <li >•</li>
-                <li class="nav-item"><a href="{{ __('/list-of-authors') }}">Authors</a></li>
-            </ul>
-        </header>
-        <section >
-            <div class="pt-8 flex  items-center content-center items-center  justify-center ">
-                <div  style="absolute" >
-                    <a href="{{ __('/') }}"><img  src="images/logo.png"  alt='Logo ACOW'  width = '100' heigth = '100' class="center"></a>
-                </div>
-            </div>
-        </section>
+        @include('layouts.header-site')
+        @include('layouts.logo')
         <section>
             <main id="main-doc" >
             <section class="main-section" id="Introduction">

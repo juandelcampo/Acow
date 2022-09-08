@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl  text-gray-800 leading-tight">
+        <h2 class="title-author">
             {{ __('Authors List') }}
         </h2>
     </x-slot>
@@ -46,7 +46,7 @@
                     @foreach($authors as $author)
                     <tr class="border-b">
 
-                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                        <td class="text-sm font-size text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                             {{$author['id']}}
                         </td>
                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">

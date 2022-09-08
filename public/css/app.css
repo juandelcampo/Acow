@@ -1,16 +1,17 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe&family=Bebas+Neue&family=Comfortaa:wght@300&family=Gantari:wght@200&display=swap');
 *,
 ::before,
 ::after {
-  /* box-sizing: border-box; */ /* 1 */
-  /* border-width: 0; */ /* 2 */
-  /* border-style: solid; */ /* 2 */
+  box-sizing: border-box; /* 1 */
+  border-width: 0; /* 2 */
+  border-style: solid; /* 2 */
   border-color: #e5e7eb; /* 2 */
 }
 
 ::before,
 ::after {
-  --tw-content: '';
+  --tw-content:
+  '';
 }
 
 /*
@@ -21,7 +22,7 @@
 */
 
 html {
-  /* line-height: 1.5; */ /* 1 */
+  line-height: 1.5; /* 1 */
   -webkit-text-size-adjust: 100%; /* 2 */
   -moz-tab-size: 4; /* 3 */
   -o-tab-size: 4;
@@ -546,12 +547,12 @@ select {
 }
 
 *, ::before, ::after {
-  /* --tw-translate-x: 0; */
-  /* --tw-translate-y: 0; */
-  /* --tw-rotate: 0; */
-  /* --tw-skew-x: 0; */
-  /* --tw-skew-y: 0; */
-  /* --tw-scale-x: 1; */
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
   --tw-scale-y: 1;
   --tw-pan-x:  ;
   --tw-pan-y:  ;
@@ -705,7 +706,7 @@ select {
 }
 .mx-auto {
   margin-left: auto;
-  margin-right: auto;
+  /* margin-right: auto; */
 }
 .my-2 {
   margin-top: 0.5rem;
@@ -810,8 +811,10 @@ select {
 }
 .flex {
   display: flex;
-  flex-direction: row;
-  align-content: center;
+  align-content: stretch;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  flex-direction: column;
 }
 .inline-flex {
   display: inline-flex;
@@ -909,7 +912,7 @@ select {
   max-width: 100%;
 }
 .max-w-7xl {
-  max-width: 80rem;
+  /* max-width: 80rem; */
 }
 .max-w-xl {
   max-width: 36rem;
@@ -984,7 +987,7 @@ select {
   justify-content: center;
 }
 .justify-between {
-  justify-content: space-between;
+  justify-content: center;
 }
 .space-x-8 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
@@ -1273,6 +1276,7 @@ select {
 }
 .text-center {
   text-align: center;
+  justify-content: center;
 }
 .text-justify {
   text-align: justify;
@@ -1469,14 +1473,14 @@ select {
   --tw-ring-opacity: 0.05;
 }
 .transition {
-  /* transition-property: color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter; */
-  /* transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter; */
-  /* transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter; */
+  transition-property: color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
   /* transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); */
   transition-duration: 150ms;
 }
 .duration-150 {
-  /* transition-duration: 150ms; */
+  transition-duration: 150ms;
 }
 .duration-200 {
   transition-duration: 200ms;
@@ -1485,7 +1489,7 @@ select {
   transition-duration: 75ms;
 }
 .ease-in-out {
-  /* transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); */
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 .ease-out {
   transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
@@ -1774,5 +1778,8 @@ select {
   .xl\:w-96 {
     width: 24rem;
   }
+}
+.font-size{
+    font-size: 1.2rem;
 }
 

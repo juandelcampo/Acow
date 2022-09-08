@@ -5,12 +5,11 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome1"/>
         <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=0">
         <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.png') }}">
-        <title>List of Authors</title>
-        <link rel="stylesheet" href="{{ asset('css/landing-page.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/letter.css') }}">
+        <title>AUTHOR QUOTES</title>
+
+        <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-        <script src="{{ asset('js/background-gradient.js') }}" defer></script>
-        <script src="{{ asset('js/letter.js') }}" defer></script>
+        <script src="{{ asset('js/app.js') }}" defer></script>
         <script type="text/javascript" src="/js/jquery-3.6.0.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
         <link  rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Unica+One&display=swap">
@@ -19,13 +18,13 @@
     <main>
         <header class="nav-menu">
             <ul id="menu-topo" class= "pt-8">
-                <li class="nav-item"><a href="#">Submit a Quote</a></li>
+                <li class="nav-item"><a class="font-header" href="{{('/create') }}">CREATE</a></li>
                 <li >•</li>
-                <li class="nav-item"><a href="{{('/about') }}">About</a></li>
+                <li class="nav-item"><a class="font-header" href="{{('/about') }}">About</a></li>
                 <li >•</li>
-                <li class="nav-item"><a href="{{('/docs') }}">API</a></li>
+                <li class="nav-item"><a class="font-header" href="{{('/docs') }}">API</a></li>
                 <li >•</li>
-                <li class="nav-item"><a href="{{('/list-of-authors') }}">Authors</a></li>
+                <li class="nav-item"><a class="font-header" href="{{('/list-of-authors') }}">Authors</a></li>
             </ul>
         </header>
         <section >
