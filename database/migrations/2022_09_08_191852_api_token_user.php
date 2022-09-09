@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class DeleteDateColumnInQuote extends Migration
+class ApiTokenUser extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class DeleteDateColumnInQuote extends Migration
      */
     public function up()
     {
-        Schema::table('quotes', function (Blueprint $table) {
-
-            $table->dropColumn('date');
-
+        Schema::table('users', function ($table) {
+            $table->string('api_token', 80)->after('password')
+                                ->unique()
+                                ->nullable()
+                                ->default(null);
         });
     }
 
@@ -27,8 +28,8 @@ class DeleteDateColumnInQuote extends Migration
      */
     public function down()
     {
-        Schema::table('quote', function (Blueprint $table) {
-            //
+        Schema::table('users', function($table) {
+            $table->dropColumn('api_token');
         });
     }
 }

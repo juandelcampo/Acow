@@ -12,18 +12,12 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Unica+One&display=swap">
         <link rel="stylesheet" href='https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe&family=Bebas+Neue&family=Comfortaa:wght@300&family=Gantari:wght@200&display=swap'>
         <!-- Styles -->
-
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
-        <script src="{{ asset('js/docs.js') }}" defer></script>
-        <script src="{{ asset('js/letter.js') }}" defer></script>
 
-        <script type="text/javascript" src="/js/jquery-3.6.0.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
     </head>
     <body class=" ">
         <div class="min-h-screen bg-gray-100">

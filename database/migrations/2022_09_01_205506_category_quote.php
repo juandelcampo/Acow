@@ -27,6 +27,6 @@ class CategoryQuote extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('category_quote');
     }
 }

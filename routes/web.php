@@ -28,7 +28,7 @@ Route::get ('/about', function (){
 Route::get ('/list-of-authors', [AuthorController::class, 'listOfAuthors']);
 Route::get('/author/{authorId}', [AuthorController::class, 'authorQuotes']);
 
-Route::get('/admin', function (){
+Route::get('/dashboard', function (){
     $user = Auth::user()->name;
     return view('dashboard', ['user' => $user]);
     })->middleware(['auth'])->name ('dashboard');
@@ -62,7 +62,6 @@ Route::prefix('quotes')->group(function(){
     Route::post('store', [QuoteController::class, 'store'])->name('quotes.store');
     Route::get('edit/{quoteId}', [QuoteController::class, 'edit'])->name('quotes.edit');
     Route::post('update/{quoteId}', [QuoteController::class, 'update'])->name('quotes.update');
-  // Route::post('update/{quoteId}', function($quoteId){dd($quoteId);});
     Route::get('delete/{quoteId}', [QuoteController::class, 'delete'])->name('quotes.delete');
 });
 

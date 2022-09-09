@@ -1,6 +1,6 @@
 
 @include('layouts.html-head')
-<body class="overflow body">
+<body class="overflow">
     <main>
         <canvas></canvas>
         @include('layouts.header-site')
@@ -25,7 +25,7 @@
         {
         $.ajax({
             type: 'GET',
-                url: 'http://127.0.0.1:8000/api/quotes/randomquote',
+                url: 'http://127.0.0.1:8000/api/quotes/random',
             })
             .done(
                 function(api)

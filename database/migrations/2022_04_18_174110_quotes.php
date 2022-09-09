@@ -17,7 +17,7 @@ class Quotes extends Migration
             $table->id();
             $table->text('quote');
             $table->integer('author_id');
-            $table->integer('date_id');
+            $table->string('publish_date');
             $table->timestamps();
          });
  }

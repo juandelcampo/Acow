@@ -6,10 +6,16 @@ use App\Http\Controllers\Api\QuoteController;
 use App\Http\Controllers\Api\AuthorController;
 use App\Http\Controllers\Api\CategoryController;
 
+//Protected Routes
+Route::group(['middleware'=>['auth:sanctum']], function(){
+
+});
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+//Public Routes
 Route::prefix('authors')->group(function(){
     Route::get('/', [AuthorController::class, 'get']);
     Route::post('/', [AuthorController::class, 'add']);
@@ -22,8 +28,8 @@ Route::prefix('quotes')->group(function(){
     Route::post('/', [QuoteController::class, 'add']);
     Route::post('{quoteId}', [QuoteController::class, 'update']);
     Route::delete('{quoteId}',[QuoteController::class, 'delete']);
-    Route::get('todayquote', [QuoteController::class, 'GetTodayQuote']);
-    Route::get('randomquote', [QuoteController::class, 'getRandomQuote']);
+    Route::get('today', [QuoteController::class, 'GetTodayQuote']);
+    Route::get('random', [QuoteController::class, 'getRandomQuote']);
 
 });
 

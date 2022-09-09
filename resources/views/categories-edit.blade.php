@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl  text-gray-800 leading-tight">
+        <h2 class="letter-author text-center">
             {{ __('Update a Category') }}
         </h2>
     </x-slot>

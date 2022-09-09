@@ -15,7 +15,7 @@ class CategoryRequest extends Request
     public function rules()
     {
         return [
-           // 'category' => 'required|alpha'
+           'category' => 'required|alpha'
         ];
     }
 
