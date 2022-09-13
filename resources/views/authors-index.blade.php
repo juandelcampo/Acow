@@ -40,13 +40,11 @@
                             Actions
                         </th>
                     </tr>
-
                 </thead>
                 <tbody>
                     @foreach($authors as $author)
                     <tr class="border-b">
-
-                        <td class="text-sm font-size text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                             {{$author['id']}}
                         </td>
                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
@@ -80,7 +78,6 @@
                     @endforeach
                 </tbody>
             </table>
-
             <div>
                 {{$authors->links()}}
             </div>

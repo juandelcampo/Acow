@@ -13,11 +13,12 @@ Route::group(['middleware'=>['auth:sanctum']], function(){
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+
 });
 
 //Public Routes
 Route::prefix('authors')->group(function(){
-    Route::get('/', [AuthorController::class, 'get']);
+    Route::get('/authors', [AuthorController::class, 'get']);
     Route::post('/', [AuthorController::class, 'add']);
     Route::post('{authorId}', [AuthorController::class, 'update']);
     Route::delete('{authorId}', [AuthorController::class, 'delete']);

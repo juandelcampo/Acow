@@ -34,7 +34,7 @@
                 <tbody class="text-center">
                     @foreach($categories as $category)
                     <tr class="border-b ">
-                        <td class=" text-gray-900  text-center font-light px-6 py-4 whitespace-nowrap">
+                        <td class=" text-gray-900 text-center font-light px-6 py-4 whitespace-nowrap">
                             {{$category['id']}}
                         </td>
                         <td class="text-sm text-gray-900 text-center  font-light px-6 py-4 whitespace-nowrap">

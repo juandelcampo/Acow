@@ -5,7 +5,8 @@
         </h2>
     </x-slot>
         <div class="max-w-7xl mx-auto table-header">
-        <form method="POST" action= "/quotes/store" enctype="multipart/form-data"> @csrf
+
+        <form method="POST" action= "{{route('quotes.store')}}" enctype="multipart/form-data"> @csrf
         <br>
             <div class="flex justify-center">
                 <div class="mb-3 xl:w-96">

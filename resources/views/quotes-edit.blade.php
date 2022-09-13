@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
         <div class="max-w-7xl mx-auto table-header">
-            <form method="POST" action= "/quotes/update/{{$quote->id}}" enctype="multipart/form-data"> @csrf
+            <form method="POST" action="/quotes/update/{{$quote->id}}" enctype="multipart/form-data"> @csrf
             <br>
             <input type="hidden" name="id" value="{{$quote->id}}">
                 <div class="flex justify-center">
@@ -25,13 +25,12 @@
                         @error('author_id') <div class="isa-error">{{ $message }} </div> @enderror
                     </select>
                 </div>
-
                     <br>
                 <div>
                     <input name="publish_date" value= "{{$quote->publish_date}}"type="text" required placeholder="Publish date (mm-dd)" class="w-full px-4 py-2 rounded focus:outline-none focus:text-gray-600">
                         @error('publish_date') <div class="isa-error">{{ $message }} </div> @enderror
                 </div>
-        </div>
+            </div>
                     <br>
                 <div>
                     <input name="quote" value = "{{$quote->quote}}" type="text" required placeholder="Quote" class="w-full px-4 py-2 rounded focus:outline-none focus:text-gray-600">

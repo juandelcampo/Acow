@@ -55,8 +55,8 @@ class QuoteController extends Controller
         $quote = Quote::find($quoteId);
         $quote->categories()->sync($categoryRequest->get('categories'));
         $quote->fill([
-            'author_id' => $request->get('author_id'),
             'quote' => $request->get('quote'),
+            'author_id' => $request->get('author_id'),
             'publish_date' => $request->get('publish_date'),
         ]);
         $quote->save();

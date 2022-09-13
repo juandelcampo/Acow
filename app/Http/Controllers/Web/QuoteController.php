@@ -23,18 +23,19 @@ class QuoteController extends Controller
     public function create()
     {
         $quotes = Quote::all();
+
         $categories = Category::orderBy('category', 'asc')->get();
         $authors = Author::orderBy('author', 'asc')->get();
 
         return view('quotes-add', ['quotes' => $quotes, 'categories' => $categories, 'authors' => $authors]);
     }
 
-    public function store(QuoteRequest $request, CategoryRequest $categoryRequest)
+    public function store(QuoteRequest $request)
     {
         $request->validateStructure();
         $quote = new Quote($request->all());
         $quote->save();
-        $quote->categories()->attach($categoryRequest['categories']);
+        $quote->categories()->attach($request->input('categories'));
 
         return redirect()->route('quotes.index')->with('success', 'Quote Created successfully.');
     }
@@ -58,15 +59,13 @@ class QuoteController extends Controller
             ];
         }
         return view('quotes-edit', ['quote' => $quote, 'categories' => $selected, 'authors' => $authors]);
-
     }
 
-    public function update($quoteId, QuoteRequest $request, CategoryRequest $categoryRequest)
-    {
+    public function update($quoteId, QuoteRequest $request){
 
         $request->validateStructure();
         $quote = Quote::find($quoteId);
-        $quote->categories()->sync($categoryRequest->get('categories'));
+        $quote->categories()->sync($request->input('categories'));
         $quote->author_id = $request->get('author_id');
         $quote->quote = $request->get('quote');
         $quote->publish_date = $request->get('publish_date');
@@ -75,10 +74,10 @@ class QuoteController extends Controller
         return redirect('/quotes')->with('success', 'Quote updated successfully.');
     }
 
-    public function delete($quoteId, QuoteRequest $request, CategoryRequest $categoryRequest)
+    public function delete($quoteId, QuoteRequest $request)
     {
         $quote = Quote::find($quoteId);
-        $quote->categories()->sync($categoryRequest->get('categories'));
+        $quote->categories()->sync($request->input('categories'));
         $quote->author_id = $request->get('author_id');
         $quote->delete();
 
