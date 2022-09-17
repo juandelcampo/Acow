@@ -24,10 +24,10 @@ class AuthorRequest extends Request
     public function rules():array
     {
          return [
-            'author' => 'required|string|max:150',
+           'author' => 'required|string|max:150',
             'lifetime' => 'required|alpha_dash',
             'nationality' => 'required|max:25|alpha',
-            'url' => 'required|url'
+            'url' => 'required|url',
         ];
     }
 

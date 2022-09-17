@@ -19,6 +19,7 @@ class CreateAuthorsTable extends Migration
             $table->string('lifetime');
             $table->string('nationality');
             $table->string('url');
+            $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
         });
     }

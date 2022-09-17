@@ -29,7 +29,7 @@ class QuoteRequest extends Request
             'quote' => 'required|string',
             'author_id' => 'required|integer|exists:authors,id',
             'publish_date' => 'required|alpha_dash',
-            'categories' => 'required|exists:category_quote,category_id'
+           // 'categories' => 'required|exists:category_quote,category_id',
         ];
     }
 

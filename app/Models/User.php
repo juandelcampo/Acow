@@ -22,6 +22,7 @@ class User extends Authenticatable
         'email',
         'password',
         'api_key',
+        'is_permission'
     ];
 
     /**
@@ -32,7 +33,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
-        'api_key',
+
     ];
 
     /**
@@ -43,4 +44,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function quotes()
+    {
+        return $this->hasMany(Quote::class);
+    }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Quote;
+use App\Models\User;
 use App\Http\Requests\QuoteRequest;
 use App\Http\Requests\CategoryRequest;
 use App\Http\Controllers\Controller;
@@ -57,12 +58,11 @@ class QuoteController extends Controller
         $quote->fill([
             'quote' => $request->get('quote'),
             'author_id' => $request->get('author_id'),
-            'publish_date' => $request->get('publish_date'),
-        ]);
+            'publish_date' => $request->get('publish_date'),]);
+
         $quote->save();
 
         return response()->json($quote->load('categories'));
-
     }
 
     public function delete(int $quoteId):JsonResponse
@@ -73,7 +73,9 @@ class QuoteController extends Controller
         return response()->json(($result) ? 'success' : "fail");
     }
 
-    public function getTodayQuote():JsonResponse
+    //--------PUBLIC--------//
+
+    public function today():JsonResponse
     {
         $date = date('Y-m-d H:i:s');
         $todayDate = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('m-d');
@@ -85,13 +87,23 @@ class QuoteController extends Controller
                                  'language' => $language[0]->language]);
     }
 
-    public function getRandomQuote():JsonResponse
+    public function random():JsonResponse
     {
         $quote = Quote::all()->random()->with('author')->get()->random();
 
         return response()->json(['quote' => $quote->quote,
         'author' => $quote->author->author]);
-}
+    }
+
+    public function custom($apiKey){
+
+
+        $apiKey = User::where('api_key', $apiKey);
+
+
+
 
     }
+
+}
 

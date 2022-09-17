@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
                             ->unique()
                             ->nullable()
                             ->default(null);
+            $table->tinyInteger('is_permission')->default(3);
             $table->rememberToken();
             $table->timestamps();
         });

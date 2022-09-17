@@ -21,12 +21,12 @@
             <table class="table-categories text-center">
                 <thead class="border-b">
                     <tr>
-                        <th scope="col" class=" text-sm text-center text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                        <th scope="col" class="text-ok text-gray-900 font-light px-0 py-4 whitespace-nowrap">
                             #
                         </th>
-                        <th scope="col" class="text-sm text-center text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                        <th scope="col" class="text-ok text-gray-900 font-light px-0 py-4 whitespace-nowrap">
                             Categories
-                        <th scope="col" class="text-sm text-center text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                        <th scope="col" class="text-ok text-gray-900 font-light px-0 py-4 whitespace-nowrap">
                             Actions
                         </th>
                     </tr>

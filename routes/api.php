@@ -29,9 +29,9 @@ Route::prefix('quotes')->group(function(){
     Route::post('/', [QuoteController::class, 'add']);
     Route::post('{quoteId}', [QuoteController::class, 'update']);
     Route::delete('{quoteId}',[QuoteController::class, 'delete']);
-    Route::get('today', [QuoteController::class, 'GetTodayQuote']);
-    Route::get('random', [QuoteController::class, 'getRandomQuote']);
-
+    Route::get('today', [QuoteController::class, 'today']);
+    Route::get('random', [QuoteController::class, 'random']);
+    Route::get('custom/{apiKey}', [QuoteController::class, 'custom']);
 });
 
 Route::prefix('categories')->group(function(){

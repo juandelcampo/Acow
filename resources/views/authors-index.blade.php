@@ -21,29 +21,29 @@
             <table class="table-authors">
                 <thead class="border-b">
                     <tr>
-                        <th scope="col" class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                        <th scope="col" class="text-ok text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                             #
                         </th>
-                        <th scope="col" class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                        <th scope="col" class="text-ok text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                             Author
                         </th>
-                        <th scope="col" class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                        <th scope="col" class="text-ok text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                             Lifetime
                         </th>
-                        <th scope="col" class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                        <th scope="col" class="text-ok text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                             Nationality
                         </th>
-                        <th scope="col" class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                        <th scope="col" class="text-ok text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                             URL
                         </th>
-                        <th scope="col" class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                        <th scope="col" class="text-ok text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                             Actions
                         </th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($authors as $author)
-                    <tr class="border-b">
+                    <tr class="border-b text-center">
                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                             {{$author['id']}}
                         </td>
