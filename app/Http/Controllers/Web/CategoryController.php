@@ -11,17 +11,20 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $user = Auth::user()->id;
-        $categories = Category::where('user_id', '=', $user)->paginate(15);
+        if ((Auth::user()->is_permission) == 1)
+        {
+            $categories = Category::paginate(15);
+        } else {
+            $user = Auth::user()->id;
+            $categories = Category::where('user_id', '=', $user)->paginate(15);
+        }
         return view('categories-index', ['categories' => $categories]);
     }
-
 
     public function create()
     {
         return view('categories-add');
     }
-
 
     public function store(CategoryRequest $request)
     {
@@ -36,8 +39,14 @@ class CategoryController extends Controller
 
     public function edit($categoryId)
     {
-        $user = Auth::user()->id;
-        $category = Category::where('user_id', '=', $user)->find($categoryId);
+        if ((Auth::user()->is_permission) == 1)
+        {
+            $category = Category::find($categoryId);
+        } else {
+            $user = Auth::user()->id;
+            $category = Category::where('user_id', '=', $user)->find($categoryId);
+        }
+
         return view('categories-edit', ['category'=>$category]);
     }
 

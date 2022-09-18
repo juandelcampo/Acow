@@ -16,7 +16,11 @@ class AuthorController extends Controller
 {
     public function get():JsonResponse
     {
-        return response()->json(['data' => Author::with('quotes')->get()],200);
+        $authors = Author::select('author', 'lifetime')
+                        ->where('user_id', 1)
+                        ->get();
+
+        return response()->json($authors,200);
     }
 
     public function add(AuthorRequest $request):JsonResponse
@@ -45,4 +49,26 @@ class AuthorController extends Controller
 
         return response()->json(($result) ? 'success' : "fail");
     }
+
+    //----CUSTOM----//
+
+    public function customAuthors($apiKey):JsonResponse
+    {
+        $authors = Author::with('user')->get();
+
+        foreach ($authors as $author){
+            $collect[]=[
+                'author' => $author->author,
+                'lifetime' => $author->lifetime,
+            ];
+        }
+
+        if($author->user->api_key == $apiKey){
+            return response()->json($collect,200);
+        } else {
+            return response()->json('Are you sure that the key is OK?',400);
+        }
+    }
+
+
 }

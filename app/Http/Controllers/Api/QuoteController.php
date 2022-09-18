@@ -11,8 +11,8 @@ use App\Services\DetectLanguageService;
 use App\Interfaces\TranslationRepositoryInterface;
 use Illuminate\Http\JsonResponse;
 use App\Jobs\Heartbeat;
-
-
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\DB;
 
 // Code Review
 // Validar que las rutas funcionen con SAD and Happy paths
@@ -34,10 +34,65 @@ class QuoteController extends Controller
         return $this->libreTranslateRepository->translate($quote, $language);
    }*/
 
+   //----PUBLIC----//
+
     public function get():JsonResponse
     {
-        return response()->json(['data' => Quote::with('categories')->get()], 200);
+        $quotes = Quote::where('user_id', '=', 1)->with('author')->get();
+
+        foreach ($quotes as $quote)
+        {
+            $collect[] = [
+                        'quote' => $quote->quote,
+                        'author' => $quote->author->author,
+                        'lifetime' => $quote->author->lifetime
+                        ];
+        }
+
+        return response()->json($collect,200);
     }
+
+    public function today():JsonResponse
+    {
+        $date = date('Y-m-d H:i:s');
+        $todayDate = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('m-d');
+        $quote = Quote::where('publish_date', $todayDate)->with('author')->get()->first();
+        $language = DetectLanguageService::detectLanguage($quote);
+
+        return response()->json(['quote' => $quote->quote,
+                                 'author' => $quote->author->author,
+                                 'language' => $language[0]->language]);
+    }
+
+    public function random():JsonResponse
+    {
+        $quote = Quote::where('user_id', '=', 1)->with('author')->get()->random();
+
+        return response()->json(['quote' => $quote->quote,
+                                'author' => $quote->author->author]);
+    }
+
+    //----CUSTOM-----//
+
+    public function customQuotes($apiKey):JsonResponse
+    {
+        $quotes = Quote::with('user')->with('author')->get();
+
+        foreach ($quotes as $quote){
+            $collect[]=[
+                'quote' => $quote->quote,
+                'author' => $quote->author->author,
+            ];
+        }
+
+        if($quote->user->api_key == $apiKey){
+            return response()->json($collect,200);
+        } else {
+            return response()->json('Are you sure that the key is OK?',400);
+        }
+    }
+
+    //----UPDATES-----//
 
     public function add(QuoteRequest $request):JsonResponse
     {
@@ -73,37 +128,6 @@ class QuoteController extends Controller
         return response()->json(($result) ? 'success' : "fail");
     }
 
-    //--------PUBLIC--------//
-
-    public function today():JsonResponse
-    {
-        $date = date('Y-m-d H:i:s');
-        $todayDate = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('m-d');
-        $quote = Quote::where('publish_date', $todayDate)->with('author')->get()->first();
-        $language = DetectLanguageService::detectLanguage($quote);
-
-        return response()->json(['quote' => $quote->quote,
-                                 'author' => $quote->author->author,
-                                 'language' => $language[0]->language]);
-    }
-
-    public function random():JsonResponse
-    {
-        $quote = Quote::all()->random()->with('author')->get()->random();
-
-        return response()->json(['quote' => $quote->quote,
-        'author' => $quote->author->author]);
-    }
-
-    public function custom($apiKey){
-
-
-        $apiKey = User::where('api_key', $apiKey);
-
-
-
-
-    }
 
 }
 

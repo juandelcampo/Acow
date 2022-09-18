@@ -16,13 +16,13 @@ class AuthorController extends Controller
 
     public function index()
     {
-        if(Auth::user()->is_permission == 1){
+        if ((Auth::user()->is_permission) == 1)
+        {
         $authors = Author::paginate(15);
     } else {
         $user = Auth::user()->id;
         $authors = Author::where('user_id', '=', $user)->paginate(15);
     }
-
         return view('authors-index', ['authors' => $authors]);
     }
 
@@ -48,12 +48,14 @@ class AuthorController extends Controller
 
     public function edit($authorId)
     {
-        if(Auth::user()->is_permission == 1){
+        if((Auth::user()->is_permission) == 1)
+        {
             $author = Author::find($authorId);
         } else {
-        $user = Auth::user()->id;
-        $author = Author::where('user_id', '=', $user)->find($authorId);
+            $user = Auth::user()->id;
+            $author = Author::where('user_id', '=', $user)->find($authorId);
         }
+
         return view('authors-edit', ['author' => $author]);
     }
 
@@ -82,17 +84,17 @@ class AuthorController extends Controller
 
     public function listOfAuthors()
     {
-        $authors = Author::orderBy('author')->get();
-        $id = Author::orderBy('id')->get();
+        $authors = Author::where('user_id', '=', '1')->orderBy('author')->get();
+        $id = Author::where('user_id', '=', '1')->orderBy('id')->get();
 
         return view('list-of-authors', ['authors' => $authors, 'id'=>$id]);
     }
 
     public function authorQuotes($authorId)
     {
-        $author = Author::find($authorId);
+        $author = Author::where('user_id', '=', '1')->find($authorId);
         $quotes = Quote::where('author_id', $authorId)->get();
-        $authors = Author::orderBy('author')->get();
+        $authors = Author::where('user_id', '=', '1')->orderBy('author')->get();
 
         return view('author-quotes', ['author' => $author, 'quotes' => $quotes, 'authors' => $authors]);
     }

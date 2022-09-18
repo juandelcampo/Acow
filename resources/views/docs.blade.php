@@ -96,6 +96,22 @@
             </article>
         </section>
         <section class="main-section" id="Introduction">
+            <header class="pt-8">4. Request Quotes from a Specific Author</header>
+            <article>
+                <p class="pb-3">The [author] call is used to generate a batch of quotes by a single author in the database. You can reference the list of available authors through your account, convenient links are provided for you to copy. We are adding more figures every month and are open to suggestions from our users. Please send your candidates to support@zenquotes.io for consideration.
+                    <code class="code">[today]</code> call.
+                    https://zenquotes.io/api/quotes/author/[author-name]/[your_key]
+                <div class="editor">
+                    <code>
+                        <span class="val">http://websiteurl/api<span class="arg">/quote</span><span class="keyword">/author</span><span class="var">/[author-name]</span>
+                    </code>
+                </div>
+            </article>
+            </section>
+
+
+
+        <section class="main-section" id="Introduction">
             <header class="pt-8">4. Get a quote for daily inspiration</header>
             <article>
                 <p class="pb-3">Each day we feature a single quote from our database, which you can call using the <code class="code">[today]</code> call.
@@ -123,7 +139,23 @@
                 </div>
             </article>
             </section>
+            <section class="main-section" id="Introduction">
+                <header class="pt-8">6. CREATE AN ACCOUNT AND LOAD YOUR OWN QUOTES</header>
+                <article>
+                    <p class="pb-3">Premium subscribers have the ability to load up to 366 of their own custom quote entries and call them using their API key.
+                        Create an account and enter each quote from the Admin Dashboard Panel chosing author, quote and category.
 
+                        To call your custom quotes, use a standard API call and append the [key] to the end of the request. The API will now only filter for your custom quotes.<br>
+                    <p class="pb-3">You may find the <code class="code">[random]</code> call useful for generating a random quote of the day
+                                    for your project rather than using the standard <code class="code">[today]</code> call to set yourself apart from others.
+                                    This call is also good for students first learning how to use the API.</p>
+                    <div class="editor">
+                    <code>
+                        <span class="val ">http://websiteurl/api<span class="arg">/[mode]</span><span class="keyword">/[key]</span>
+                    </code>
+                    </div>
+                </article>
+                </section>
             <section class="main-section" id="Introduction">
             <header class="pt-8">6. API Usage Limits and Attribution</header>
                 <article>

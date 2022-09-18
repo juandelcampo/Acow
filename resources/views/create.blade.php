@@ -17,14 +17,14 @@
                     <article class="items-center margin-gross justify-center text-center">
                         <p class="pb-3  items-center justify-center">Premium subscribers have the ability to load up to <strong>366</strong> of their own custom quote entries and call them using their API key.
                             <br>Create an account and  enter each quote from the Admin Dashboard Panel chosing author, quote and category.</p>
-                        <p class="pb-3 items-center justify-center"> To call your custom quotes, use a standard API call and append the option <code>&custom=true</code> to the end of the request.
+                        <p class="pb-3 items-center justify-center"> To call your custom quotes, use a standard API call and append the <code>[key]</code> to the end of the request.
                                         The API will now only filter for your custom quotes.</p>
                     </article>
             </section>
             <section class="editor center width-60x flex">
                     <div  >
                         <code class="text-center flex">
-                            <span class="val ">http://websiteurl/api<span class="arg">/[mode]</span><span class="keyword">/[key]</span><span class="var">&custom=true</span>
+                            <span class="val ">http://websiteurl/api<span class="arg">/[mode]</span><span class="keyword">/[key]</span>
                         </code>
                     </div>
             </section>

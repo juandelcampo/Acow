@@ -5,6 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome1"/>
         <meta name="viewport" content="width=device-width, initial-scale=1,
         maximum-scale=1, user-scalable=0">
+        <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.png') }}">
         <title>IAAQ</title>
         <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">

@@ -12,7 +12,7 @@
                     Welcome, {{ Auth::user()->name }}!
                 </div>
                 <div  class="p-6 text-center bg-white ">
-                    Your api key is: <br><br> {{ Auth::user()->api_key }}
+                    Your [key] is: <br><br> {{ Auth::user()->api_key }}
                 </div>
             </div>
         </div>

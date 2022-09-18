@@ -588,3 +588,10 @@
         position: absolute;
         z-index: -1;
     }
+
+    .text-li {
+        font-family: 'Gantari', sans-serif;
+        font-size: 1.4rem;
+        line-height: normal;
+        margin-left: 1%;
+    }

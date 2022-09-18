@@ -11,6 +11,12 @@ Route::group(['middleware'=>['auth:sanctum']], function(){
 
 });
 
+Route::prefix('quote')->group(function(){
+    Route::post('/', [QuoteController::class, 'add']);
+    Route::post('{quoteId}', [QuoteController::class, 'update']);
+    Route::delete('{quoteId}',[QuoteController::class, 'delete']);
+});
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 
@@ -18,20 +24,18 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 //Public Routes
 Route::prefix('authors')->group(function(){
-    Route::get('/authors', [AuthorController::class, 'get']);
+    Route::get('/', [AuthorController::class, 'get']);
+    Route::get('/{apiKey}', [AuthorController::class, 'customAuthors']);
     Route::post('/', [AuthorController::class, 'add']);
     Route::post('{authorId}', [AuthorController::class, 'update']);
     Route::delete('{authorId}', [AuthorController::class, 'delete']);
 });
 
-Route::prefix('quotes')->group(function(){
+Route::prefix('quote')->group(function(){
     Route::get('/', [QuoteController::class, 'get']);
-    Route::post('/', [QuoteController::class, 'add']);
-    Route::post('{quoteId}', [QuoteController::class, 'update']);
-    Route::delete('{quoteId}',[QuoteController::class, 'delete']);
     Route::get('today', [QuoteController::class, 'today']);
     Route::get('random', [QuoteController::class, 'random']);
-    Route::get('custom/{apiKey}', [QuoteController::class, 'custom']);
+    Route::get('/{apiKey}', [QuoteController::class, 'customQuotes']);
 });
 
 Route::prefix('categories')->group(function(){

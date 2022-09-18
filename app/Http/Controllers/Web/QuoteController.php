@@ -5,22 +5,21 @@ namespace App\Http\Controllers\Web;
 use App\Models\Quote;
 use App\Models\Category;
 use App\Models\Author;
-use App\Models\User;
 use App\Http\Requests\QuoteRequest;
-use App\Http\Requests\CategoryRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Session;
 
 class QuoteController extends Controller
 {
 
     public function index()
     {
-        if(Auth::user()->is_permission == 1){
-            $quotes = Quote::paginate(30);
+        if ((Auth::user()->is_permission) == 1)
+        {
+            $quotes = Quote::with('categories')
+                            ->orderBy('publish_date', 'asc')
+                            ->paginate(30);
         } else {
             $user = Auth::user()->id;
             $quotes = Quote::where('user_id', '=', $user)
@@ -31,10 +30,10 @@ class QuoteController extends Controller
         return view('quotes-index', ['quotes' => $quotes]);
     }
 
-
     public function create()
     {
-        if(Auth::user()->is_permission == 1){
+        if ((Auth::user()->is_permission) == 1)
+        {
             $quotes = Quote::all();
             $categories = Category::orderBy('category', 'asc')->get();
             $authors = Author::orderBy('author', 'asc')->get();
@@ -61,7 +60,8 @@ class QuoteController extends Controller
 
     public function edit($quoteId)
     {
-        if(Auth::user()->is_permission == 1){
+        if ((Auth::user()->is_permission) == 1)
+        {
             $quote = Quote::find($quoteId);
             $categories = Category::all();
             $authors = Author::all();
@@ -73,7 +73,8 @@ class QuoteController extends Controller
         }
         $selected = [];
 
-        foreach ($categories as $category) {
+        foreach ($categories as $category)
+        {
             $selected[] = [
                 'category'  => $category->category,
                 'id'        => $category->id,

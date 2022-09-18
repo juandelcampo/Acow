@@ -23,6 +23,10 @@ Route::get ('/about', function (){
     return view('about');
 });
 
+Route::get ('/privacy', function (){
+    return view('privacy');
+});
+
 Route::get ('/list-of-authors', [AuthorController::class, 'listOfAuthors']);
 Route::get('/author/{authorId}', [AuthorController::class, 'authorQuotes']);
 
