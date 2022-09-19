@@ -7,6 +7,7 @@ use App\Models\Quote;
 use App\Http\Requests\AuthorRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 
 class AuthorController extends Controller
@@ -40,9 +41,11 @@ class AuthorController extends Controller
         $author->lifetime = $request->lifetime;
         $author->nationality = $request->nationality;
         $author->url = $request->url;
+        $tag = Str::lower($request->input('author'));
+        $tag = str_replace(' ', '-', $tag);
+        $author->tag = $tag;
         $author->save();
 
-        $author->save();
         return redirect()->route('authors.index')->with('success','Author created successfully.');
     }
 
@@ -67,6 +70,9 @@ class AuthorController extends Controller
         $author->lifetime = $request->lifetime;
         $author->nationality = $request->nationality;
         $author->url = $request->url;
+        $tag = Str::lower($author->author);
+        $tag = str_replace(' ', '-', $tag);
+        $author->tag = $tag;
         $author->save();
 
         return redirect('/authors')->with('success', 'Author updated successfully');

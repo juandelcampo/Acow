@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Http;
 
 class QuoteController extends Controller
 {
-
     public function index()
     {
         if ((Auth::user()->is_permission) == 1)
@@ -52,6 +51,8 @@ class QuoteController extends Controller
         $request->validateStructure();
         $quote = new Quote($request->all());
         $quote->user_id = Auth::user()->id;
+        $charCount = strlen($quote->quote);
+        $quote->char_count = $charCount;
         $quote->save();
         $quote->categories()->attach($request->input('categories'));
 

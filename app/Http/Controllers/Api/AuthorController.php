@@ -6,6 +6,7 @@ use App\Models\Author;
 use App\Http\Requests\AuthorRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 
 // Code Review
@@ -14,13 +15,32 @@ use Illuminate\Support\Facades\Validator;
 
 class AuthorController extends Controller
 {
+
+    public function authorToTag(){
+
+
+    }
+
     public function get():JsonResponse
     {
         $authors = Author::select('author', 'lifetime')
                         ->where('user_id', 1)
                         ->get();
 
-        return response()->json($authors,200);
+
+        foreach ($authors as $author)
+        {   $tag = Str::lower($author->author);
+            $tag = str_replace(' ', '-', $tag);
+
+            $collect[] = [
+                        'author' => $author->author,
+                        'lifetime' => $author->lifetime,
+                        'tag' => $tag
+                        ];
+        }
+
+
+        return response()->json($collect,200);
     }
 
     public function add(AuthorRequest $request):JsonResponse

@@ -17,6 +17,7 @@ class CreateQuotesTable extends Migration
             $table->text('quote');
             $table->integer('author_id');
             $table->string('publish_date');
+            $table->integer('char_count');
             $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
          });
