@@ -3,45 +3,70 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Author;
+use App\Models\User;
 use App\Http\Requests\AuthorRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Validator;
-
-// Code Review
-// Validar que las rutas funcionen con SAD and Happy paths
-// Autor inexistente, sin nombre, etc
 
 class AuthorController extends Controller
 {
-
-    public function authorToTag(){
-
-
-    }
+    //---PUBLIC---//
 
     public function get():JsonResponse
     {
-        $authors = Author::select('author', 'lifetime')
-                        ->where('user_id', 1)
-                        ->get();
+        $authors = Author::where('user_id', 1)
+                            ->get();
 
 
         foreach ($authors as $author)
-        {   $tag = Str::lower($author->author);
-            $tag = str_replace(' ', '-', $tag);
-
+        {
             $collect[] = [
                         'author' => $author->author,
                         'lifetime' => $author->lifetime,
-                        'tag' => $tag
-                        ];
+                        'nationality' => $author->nationality,
+                        'website' => $author->url,
+                        'tag' => $author->tag
+            ];
         }
-
 
         return response()->json($collect,200);
     }
+
+
+    //----CUSTOM----//
+
+    public function customAuthors($apiKey):JsonResponse
+    {
+        $users = User::where('api_key', $apiKey)
+                        ->select('id')
+                        ->get();
+
+        foreach ($users as $user){
+            $id = $user->id;
+        }
+
+        $authors = Author::where('user_id', $id)
+                            ->get();
+
+        foreach ($authors as $author){
+            $collect[]=[
+                        'author' => $author->author,
+                        'lifetime' => $author->lifetime,
+                        'nationality' => $author->nationality,
+                        'website' => $author->url
+            ];
+        }
+
+        if($author->user->api_key == $apiKey){
+            return response()->json($collect,200);
+        } else {
+            return response()->json('Are you sure that the key is OK?',400);
+        }
+    }
+
+
+    //---PROTECTED---//
+
 
     public function add(AuthorRequest $request):JsonResponse
     {
@@ -51,6 +76,7 @@ class AuthorController extends Controller
 
         return response()->json($newAuthor);
     }
+
 
     public function update(AuthorRequest $request, int $authorId):JsonResponse
     {
@@ -62,32 +88,13 @@ class AuthorController extends Controller
         return response()->json($author);
     }
 
+
     public function delete(int $authorId):JsonResponse
     {
         $author = Author::find($authorId);
         $result = $author->delete();
 
         return response()->json(($result) ? 'success' : "fail");
-    }
-
-    //----CUSTOM----//
-
-    public function customAuthors($apiKey):JsonResponse
-    {
-        $authors = Author::with('user')->get();
-
-        foreach ($authors as $author){
-            $collect[]=[
-                'author' => $author->author,
-                'lifetime' => $author->lifetime,
-            ];
-        }
-
-        if($author->user->api_key == $apiKey){
-            return response()->json($collect,200);
-        } else {
-            return response()->json('Are you sure that the key is OK?',400);
-        }
     }
 
 

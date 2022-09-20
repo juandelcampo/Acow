@@ -6,40 +6,42 @@ use App\Http\Controllers\Api\QuoteController;
 use App\Http\Controllers\Api\AuthorController;
 use App\Http\Controllers\Api\CategoryController;
 
-
 //Public Routes
 
 //---PUBLIC AUTHORS---//
-Route::get('/authors', [AuthorController::class, 'get']);
+Route::get('authors', [AuthorController::class, 'get']);
 
 //---PUBLIC QUOTES---//
-Route::get('/today', [QuoteController::class, 'today']);
-Route::get('/random', [QuoteController::class, 'random']);
-Route::prefix('quotes')->group(function(){
-    Route::get('author/{tag}', [QuoteController::class, 'getQuoteByAuthor']);
-    Route::get('category/{category}', [QuoteController::class, 'getQuoteByCategory']);
-});
+Route::get('random', [QuoteController::class, 'random']);
+Route::get('today', [QuoteController::class, 'today']);
+Route::get('categories/{category}', [QuoteController::class, 'getQuoteByCategory']);
+Route::get('categories', [CategoryController::class, 'get']);
+Route::get('authors/{tag}', [QuoteController::class, 'getQuoteByAuthor']);
+
+//---PUBLIC CATEGORIES---//
+Route::post('categories', [CategoryController::class, 'add']);
+
 
 //Custom Routes
-Route::prefix('quotes')->group(function(){
-    Route::get('{apiKey}/{paginate}', [QuoteController::class, 'customQuotes']);
-    Route::get('random_{apiKey}', [QuoteController::class, 'customRandom']);
-    Route::get('today_{apiKey}', [QuoteController::class, 'customToday']);
-});
 
+//---CUSTOM AUTHORS---//
 Route::get('authors/{apiKey}', [AuthorController::class, 'customAuthors']);
+
+//---CUSTOM QUOTES---//
+Route::get('random/{apiKey}', [QuoteController::class, 'customRandom']);
+Route::get('today/{apiKey}', [QuoteController::class, 'customToday']);
+Route::get('quotes/{apiKey}', [QuoteController::class, 'customQuotes']);
 
 
 //Protected Routes
 
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
-
 });
 
 Route::group(['middleware'=>['auth:sanctum']], function(){
 
-});
 
 Route::prefix('quotes')->group(function(){
     Route::get('/', [QuoteController::class, 'get']);
@@ -55,10 +57,11 @@ Route::prefix('authors')->group(function(){
 });
 
 Route::prefix('categories')->group(function(){
-    Route::get('/', [CategoryController::class, 'get']);
     Route::post('/', [CategoryController::class, 'add']);
     Route::post('{categoryId}', [CategoryController::class, 'update']);
     Route::delete('{categoryId}', [CategoryController::class, 'delete']);
+});
+
 });
 
 

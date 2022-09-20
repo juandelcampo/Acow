@@ -15,50 +15,62 @@ use Illuminate\Http\JsonResponse;
 
 class QuoteController extends Controller
 {
-   /* public $libreTranslateRepository;
-    public $googleTranslateRepository;
+/* public $libreTranslateRepository;
+public $googleTranslateRepository;
+// Le cambiaria el nombre al metodo ya que los mismos suelen ser acciones
+public function translate(string $quote, string $language):string // Tipar el input y el output
+{
+    return $this->libreTranslateRepository->translate($quote, $language);
+public function __construct(TranslationRepositoryInterface $libreTranslateRepository, $googleTranslateRepository)
+{
+    $this->libreTranslateRepository = $libreTranslateRepository;
+    $this->googleTranslateRepository = $googleTranslateRepository;
+}
+}*/
 
-   public function __construct(TranslationRepositoryInterface $libreTranslateRepository, $googleTranslateRepository)
-   {
-       $this->libreTranslateRepository = $libreTranslateRepository;
-       $this->googleTranslateRepository = $googleTranslateRepository;
-   }
-
-   // Le cambiaria el nombre al metodo ya que los mismos suelen ser acciones
-   public function translate(string $quote, string $language):string // Tipar el input y el output
-   {
-        return $this->libreTranslateRepository->translate($quote, $language);
-   }*/
 
    //----PUBLIC----//
 
-    public function get():JsonResponse
+    public function random():JsonResponse
     {
-        $quotes = Quote::where('user_id', '=', 1)
+        $quote = Quote::where('user_id', '=', 1)
                         ->with('author')
-                        ->inRandomOrder()
-                        ->paginate(10);
+                        ->get()
+                        ->random();
 
-        foreach ($quotes as $quote)
-        {
-            $collect[] = [
-                        'quote' => $quote->quote,
-                        'author' => $quote->author->author,
-                        'lifetime' => $quote->author->lifetime,
-                        'characters' => $quote->char_count
-                        ];
-        }
-
-        return response()->json($collect,200);
+        return response()->json(['quote' => $quote->quote,
+                                'author' => $quote->author->author,
+                                'lifetime' => $quote->author->lifetime,
+                                'characters' => $quote->char_count]);
     }
 
-    public function getQuoteByAuthor($tag)
+
+    public function today():JsonResponse
+    {
+        $date = date('Y-m-d H:i:s');
+
+        $todayDate = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $date)
+                                   ->format('m-d');
+
+        $quote = Quote::where('user_id', '=', 1)
+                        ->where('publish_date', $todayDate)
+                        ->with('author')
+                        ->get()
+                        ->first();
+
+        return response()->json(['quote' => $quote->quote,
+                                'author' => $quote->author->author,
+                                'lifetime' => $quote->author->lifetime,
+                                'characters' => $quote->char_count]);
+    }
+
+
+    public function getQuoteByAuthor(string $tag): JsonResponse
     {
         $quotes = Quote::where('user_id', '=', 1)
                         ->with('author')
-                        ->whereHas('author', function($q) use ($tag) {
-                        $q->where('tag', $tag);
-                        })
+                        ->whereHas('author', function($q) use ($tag) {$q
+                        ->where('tag', $tag);})
                         ->get();
 
         foreach ($quotes as $quote)
@@ -68,14 +80,15 @@ class QuoteController extends Controller
                         'author' => $quote->author->author,
                         'lifetime' => $quote->author->lifetime,
                         'characters' => $quote->char_count
-                        ];
+            ];
 
         }
 
         return response()->json($collect,200);
     }
 
-    public function getQuoteByCategory($category)
+
+    public function getQuoteByCategory(string $category): JsonResponse
     {
         $category = Category::where('user_id', '=', 1)
                                 ->where('category', $category)
@@ -90,43 +103,17 @@ class QuoteController extends Controller
                         'author' => $quote->author->author,
                         'lifetime' => $quote->author->lifetime,
                         'characters' => $quote->char_count
-                        ];
+            ];
         }
 
         return response()->json($collect,200);
     }
 
-    public function today():JsonResponse
-    {
-        $date = date('Y-m-d H:i:s');
-
-        $todayDate = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $date)
-                                    ->format('m-d');
-
-        $quote = Quote::where('user_id', '=', 1)
-                        ->where('publish_date', $todayDate)
-                        ->with('author')
-                        ->get()
-                        ->first();
-
-        return response()->json(['quote' => $quote->quote,
-                                 'author' => $quote->author->author]);
-    }
-
-    public function random():JsonResponse
-    {
-        $quote = Quote::where('user_id', '=', 1)
-                        ->with('author')
-                        ->get()
-                        ->random();
-
-        return response()->json(['quote' => $quote->quote,
-                                'author' => $quote->author->author]);
-    }
 
     //----CUSTOM-----//
 
-    public function customQuotes($apiKey, $paginate):JsonResponse
+
+    public function customQuotes(string $apiKey):JsonResponse
     {
         $users = User::where('api_key', $apiKey)
                         ->select('id')
@@ -137,21 +124,24 @@ class QuoteController extends Controller
         }
 
         $quotes = Quote::where('user_id', $id)
-                        ->with('user')
                         ->with('author')
-                        ->paginate($paginate);
+                        ->with('categories')
+                        ->get();
 
         foreach ($quotes as $quote){
             $collect[]=[
                 'quote' => $quote->quote,
                 'author' => $quote->author->author,
-                'characters' => $quote->tag
+                'lifetime' => $quote->author->lifetime,
+                'characters' => $quote->char_count
             ];
         }
+
             return response()->json($collect,200);
     }
 
-    public function customRandom($apiKey):JsonResponse
+
+    public function customRandom(string $apiKey):JsonResponse
     {
         $users = User::where('api_key', $apiKey)
                         ->select('id')
@@ -170,6 +160,8 @@ class QuoteController extends Controller
             $collect[]=[
                 'quote' => $quote->quote,
                 'author' => $quote->author->author,
+                'lifetime' => $quote->author->lifetime,
+                'characters' => $quote->char_count
             ];
         }
 
@@ -179,7 +171,8 @@ class QuoteController extends Controller
         return response()->json($randomQuote,200);
     }
 
-    public function customToday($apiKey):JsonResponse
+
+    public function customToday(string $apiKey):JsonResponse
     {
         $date = date('Y-m-d H:i:s');
 
@@ -203,25 +196,59 @@ class QuoteController extends Controller
             $collect[]=[
                 'quote' => $quote->quote,
                 'author' => $quote->author->author,
+                'lifetime' => $quote->author->lifetime,
+                'characters' => $quote->char_count
             ];
         }
 
         return response()->json($collect,200);
+    }
 
-}
 
-    //----UPDATES-----//
+    public function getCustomQuoteByAuthor(string $tag, string $apiKey): JsonResponse
+    {
+        $users = User::where('api_key', $apiKey)
+                    ->select('id')
+                    ->get();
+
+        foreach ($users as $user){
+            $id = $user->id;
+        }
+
+        $quotes = Quote::where('user_id', '=', $id)
+                        ->with('author')
+                        ->whereHas('author', function($q) use ($tag) {$q
+                        ->where('tag', $tag);})
+                        ->get();
+
+        foreach ($quotes as $quote)
+        {
+            $collect[] = [
+                        'quote' => $quote->quote,
+                        'author' => $quote->author->author,
+                        'lifetime' => $quote->author->lifetime,
+                        'characters' => $quote->char_count
+            ];
+        }
+
+        return response()->json($collect,200);
+    }
+
+
+    //---PROTECTED---//
+
 
     public function add(QuoteRequest $request):JsonResponse
     {
         $request->validateStructure();
         $data = request()->all();
-        $newQuote = new Quote($data);
-        $newQuote->save();
-        $newQuote->categories()->attach($data['categories']);
+        $quote = new Quote($data);
+        $quote->save();
+        $quote->categories()->attach($data['categories']);
 
-        return response()->json($newQuote->load('categories'));
+        return response()->json($quote->load('categories'));
     }
+
 
     public function update(QuoteRequest $request, CategoryRequest $categoryRequest, int $quoteId):JsonResponse
     {
@@ -229,14 +256,16 @@ class QuoteController extends Controller
         $quote = Quote::find($quoteId);
         $quote->categories()->sync($categoryRequest->get('categories'));
         $quote->fill([
-            'quote' => $request->get('quote'),
-            'author_id' => $request->get('author_id'),
-            'publish_date' => $request->get('publish_date'),]);
+                    'quote' => $request->get('quote'),
+                    'author_id' => $request->get('author_id'),
+                    'publish_date' => $request->get('publish_date'),
+        ]);
 
         $quote->save();
 
         return response()->json($quote->load('categories'));
     }
+
 
     public function delete(int $quoteId):JsonResponse
     {
@@ -247,5 +276,24 @@ class QuoteController extends Controller
     }
 
 
+    public function get():JsonResponse
+    {
+        $quotes = Quote::where('user_id', '=', 1)
+                        ->with('author')
+                        ->inRandomOrder()
+                        ->paginate(10);
+
+        foreach ($quotes as $quote)
+        {
+            $collect[] = [
+                        'quote' => $quote->quote,
+                        'author' => $quote->author->author,
+                        'lifetime' => $quote->author->lifetime,
+                        'characters' => $quote->char_count
+            ];
+        }
+
+        return response()->json($collect,200);
+    }
 }
 

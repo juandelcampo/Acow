@@ -11,7 +11,18 @@ class CategoryController extends Controller
 {
     public function get():JsonResponse
     {
-        return response()->json(['data' => Category::with('quotes')->get()], 200);
+        $categories = Category::where('user_id', 1)
+                                ->orderBy('category', 'asc')
+                                ->get();
+
+        foreach ($categories as $category)
+        {
+            $collect[] = [
+                        'category' => $category->category
+            ];
+        }
+
+        return response()->json($collect, 200);
     }
 
     public function add(CategoryRequest $request):JsonResponse
