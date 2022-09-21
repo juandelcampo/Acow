@@ -25,7 +25,7 @@ class AuthorController extends Controller
                         'lifetime' => $author->lifetime,
                         'nationality' => $author->nationality,
                         'website' => $author->url,
-                        'tag' => $author->tag
+                        'author-name' => $author->tag
             ];
         }
 

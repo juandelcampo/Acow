@@ -5,8 +5,8 @@
             <section class="pt-8 margin-x ">
                 <div  class="list-of-authors justify-center items-center content-center ">
                     <ul class="list-hori">
-                        @foreach($authors as $author)
-                        <a href="{{ __('author/').$author['id']}}"> <li class="list-hori" >{{$author['author']}}</li></a>
+                        @foreach($categories as $category)
+                        <li class="list-hori" >{{$category['category']}}</li>
                             @if (!$loop->last)
                                 <li class="list-hori">•</li>
                             @endif
@@ -15,4 +15,3 @@
                 </div>
             </section>
 </body>
-

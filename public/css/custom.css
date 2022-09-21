@@ -64,7 +64,7 @@
     .py-5{padding-top:5rem;padding-bottom:5rem}
     .py-x{padding-bottom:11rem}
     .px-6{padding-left:1.5rem;padding-right:1.5rem}
-    .pt-8{padding-top:1rem;}
+
     .pt-100{padding-top:10rem;}
     .pt-60{padding-top:6rem;}
     .pt-50{padding-top:5rem;}
@@ -232,7 +232,6 @@
         overflow-y: auto;
         align-items: center;
         align-content: center;
-
         margin: auto;
     }
 
@@ -248,9 +247,10 @@
 
     .main-section header {
         text-transform: uppercase;
-        font-size: 2.5rem;
+        font-size: 3rem;
         font-family: 'Bebas Neue';
-        padding-bottom: 1rem;
+        padding-bottom: 0;
+
     }
 
     /* code font*/
@@ -276,27 +276,31 @@
     }
 
     .editor .str {
-        color: #bae67e;
+        color: #5abfad;
     }
 
     .editor .val {
-        color: rgb(212, 214, 123);
+        color: #e5c07b;
     }
 
     .editor .func {
-        color: #e473cb;
+        color: #b392f0;
     }
 
     .editor .req {
-        color: #f28779;
+        color: #f97583;
     }
 
     .editor .var {
         color: #cbccc6;
     }
 
+    .editor .jeje {
+        color: #5b83c9;
+    }
+
     .editor .arg {
-        color: #9bceec;
+        color: #71b4ff;
     }
 
     /* media queries */
@@ -328,15 +332,39 @@
     }
 
     p {
-        margin: 60 auto;font-family: 'Gantari', sans-serif;font-size: 1.4rem;line-height: normal;
+        margin: 60 auto;
+        font-family: 'Gantari', sans-serif;
+        font-size: 1.4rem;
+        line-height: normal;
+    }
+
+    .index {
+
+        font-family: 'Gantari', sans-serif;
+        font-size: 1.4rem;
+        line-height: 2.5rem;
+        font-weight: bold;
+        color: rgb(45, 45, 73);
+    }
+    .scroll {
+
+        overflow-y: scroll;
+    }
+
+    .underline-on-hover:hover {
+        text-decoration: underline;
     }
 
     .padding-left{
         padding-left:1rem;
     }
 
+    .padding-left2{
+        padding-left:2rem;
+    }
+
     .code{
-        font-size: 0.9rem;
+        font-size: 1rem;
     }
 
 /*--ABOUT---*/
@@ -362,11 +390,7 @@
 
 /*----Welcome Logo Shadow----*/
 
-    .btn-animate {
-
-        background-position: -50px -60px;
-        transition: 1s ease-out;
-    }
+    .btn-animate {background-position: -50px -60px;transition: 1s ease-out;}
     .btn-animate:hover {
 
         -webkit-filter: drop-shadow(10px 10px 10px 10px #222);
@@ -535,10 +559,6 @@
     .table-header {
         margin-bottom:1rem;
         text-align: center;
-    }
-
-    th {
-        /* text-align: left; */
     }
 
     .alert-success {

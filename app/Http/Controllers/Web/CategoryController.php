@@ -21,6 +21,13 @@ class CategoryController extends Controller
         return view('categories-index', ['categories' => $categories]);
     }
 
+    public function listOfCategories()
+    {
+            $categories = Category::where('user_id', '=', 1)->get();
+
+        return view('list-of-categories', ['categories' => $categories]);
+    }
+
     public function create()
     {
         return view('categories-add');

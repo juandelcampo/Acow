@@ -11,15 +11,14 @@ use App\Http\Controllers\Api\CategoryController;
 //---PUBLIC AUTHORS---//
 Route::get('authors', [AuthorController::class, 'get']);
 
+//---PUBLIC CATEGORIES---//
+Route::get('categories', [CategoryController::class, 'get']);
+
 //---PUBLIC QUOTES---//
 Route::get('random', [QuoteController::class, 'random']);
 Route::get('today', [QuoteController::class, 'today']);
-Route::get('categories/{category}', [QuoteController::class, 'getQuoteByCategory']);
-Route::get('categories', [CategoryController::class, 'get']);
-Route::get('authors/{tag}', [QuoteController::class, 'getQuoteByAuthor']);
-
-//---PUBLIC CATEGORIES---//
-Route::post('categories', [CategoryController::class, 'add']);
+Route::get('quotes/categories/{category}', [QuoteController::class, 'getQuoteByCategory']);
+Route::get('quotes/authors/{tag}', [QuoteController::class, 'getQuoteByAuthor']);
 
 
 //Custom Routes
@@ -34,7 +33,6 @@ Route::get('quotes/{apiKey}', [QuoteController::class, 'customQuotes']);
 
 
 //Protected Routes
-
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

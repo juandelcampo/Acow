@@ -30,6 +30,8 @@ Route::get ('/privacy', function (){
 Route::get ('/list-of-authors', [AuthorController::class, 'listOfAuthors']);
 Route::get('/author/{authorId}', [AuthorController::class, 'authorQuotes']);
 
+Route::get('list-of-categories', [CategoryController::class, 'listOfCategories']);
+
 Route::get('/dashboard', function (){
     $user = Auth::user()->name;
     return view('dashboard', ['user' => $user]);
