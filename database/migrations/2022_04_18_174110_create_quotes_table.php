@@ -3,8 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
-class Authors extends Migration
+class CreateQuotesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +12,16 @@ class Authors extends Migration
      */
     public function up()
     {
-        Schema::create('authors', function (Blueprint $table) {
+        Schema::create('quotes', function (Blueprint $table) {
             $table->id();
-            $table->string('author');
-            $table->string('lifetime');
-            $table->string('nationality');
-            $table->string('url');
+            $table->text('quote');
+            $table->integer('author_id');
+            $table->string('publish_date');
+            $table->integer('char_count');
+            $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
-        });
-    }
-
-
+         });
+ }
     /**
      * Reverse the migrations.
      *
@@ -31,6 +29,6 @@ class Authors extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('authors');
+        Schema::dropIfExists('quotes');
     }
 }

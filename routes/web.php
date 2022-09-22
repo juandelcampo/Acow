@@ -5,8 +5,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\QuoteController;
 use App\Http\Controllers\Web\AuthorController;
 use App\Http\Controllers\Web\CategoryController;
-use App\Http\Controllers\Web\ApiDocsController;
-use App\Http\Requests\Request;
 use Illuminate\Support\Facades\Auth;
 
 Route::get ('/', function (){
@@ -25,10 +23,16 @@ Route::get ('/about', function (){
     return view('about');
 });
 
+Route::get ('/privacy', function (){
+    return view('privacy');
+});
+
 Route::get ('/list-of-authors', [AuthorController::class, 'listOfAuthors']);
 Route::get('/author/{authorId}', [AuthorController::class, 'authorQuotes']);
 
-Route::get('/admin', function (){
+Route::get('list-of-categories', [CategoryController::class, 'listOfCategories']);
+
+Route::get('/dashboard', function (){
     $user = Auth::user()->name;
     return view('dashboard', ['user' => $user]);
     })->middleware(['auth'])->name ('dashboard');
@@ -36,7 +40,6 @@ Route::get('/admin', function (){
 require __DIR__.'/auth.php';
 
 Route::prefix('authors')->group(function(){
-//    dd('authors');
     Route::get('/', [AuthorController::class, 'index'])->name('authors.index');
     Route::get('create', [AuthorController::class, 'create'])->name('authors.create');
     Route::post('store', [AuthorController::class, 'store'])->name('authors.store');
@@ -46,7 +49,6 @@ Route::prefix('authors')->group(function(){
 });
 
 Route::prefix('categories')->group(function(){
-    // dd('categories');
     Route::get('/', [CategoryController::class, 'index'])->name('categories.index');
     Route::get('create', [CategoryController::class, 'create'])->name('categories.create');
     Route::post('store', [CategoryController::class, 'store'])->name('categories.store');
@@ -56,14 +58,13 @@ Route::prefix('categories')->group(function(){
 });
 
 Route::prefix('quotes')->group(function(){
-
     Route::get('/', [QuoteController::class, 'index'])->name('quotes.index');
     Route::get('create', [QuoteController::class, 'create'])->name('quotes.create');
     Route::post('store', [QuoteController::class, 'store'])->name('quotes.store');
     Route::get('edit/{quoteId}', [QuoteController::class, 'edit'])->name('quotes.edit');
     Route::post('update/{quoteId}', [QuoteController::class, 'update'])->name('quotes.update');
-  // Route::post('update/{quoteId}', function($quoteId){dd($quoteId);});
     Route::get('delete/{quoteId}', [QuoteController::class, 'delete'])->name('quotes.delete');
+
 });
 
 Route::get('dictionary', [QuoteController::class, 'api']);

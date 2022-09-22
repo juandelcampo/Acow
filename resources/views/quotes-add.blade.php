@@ -1,19 +1,20 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl  text-gray-800 leading-tight">
+        <h2 class="letter-author text-center">
             {{ __('Add a Quote') }}
         </h2>
     </x-slot>
         <div class="max-w-7xl mx-auto table-header">
-        <form method="POST" action= "/quotes/store" enctype="multipart/form-data"> @csrf
+
+        <form method="POST" action= "{{route('quotes.store')}}" enctype="multipart/form-data"> @csrf
         <br>
             <div class="flex justify-center">
                 <div class="mb-3 xl:w-96">
-                <select name="author_id" class ="form-select appearance-none block px-3 py-1.5 text-base text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-outm-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none select-form overflow-y-auto" aria-label="">
+                <select name="author_id" class ="form-select text-gray-700  bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-outm-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none select-form overflow-y-auto" aria-label="">
                     <option disabled selected>Select an Author</option>
                         @foreach ($authors as $author)
                             @if ($author['author'])
-                                <option value = "{{$author ['id']}}">{{$author['author']}}</option>
+                                <option value = "{{$author['id']}}">{{$author['author']}}</option>
                             @endif
                         @endforeach
 
@@ -34,12 +35,10 @@
                         <div>
                             <div class="form-check">
                                 @foreach ($categories as $category)
-
                                         <label class="form-check-inline">
                                         <input class="form-check-input" type="checkbox" name="categories[]" value= {{ $category->id }}
                                         {{ (is_array(old('category')) && in_array(old('category'))) ? ' checked' : '' }}> {{ $category->category }}
                                         </label>
-
                                 @endforeach
                             </div>
                         </div>

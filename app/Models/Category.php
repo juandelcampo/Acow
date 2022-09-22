@@ -13,4 +13,9 @@ class Category extends Model
     {
         return $this->belongsToMany(Quote::class)->withPivot('quote_id','category_id');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

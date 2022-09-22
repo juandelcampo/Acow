@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl  text-gray-800 leading-tight">
+        <h2 class="title-author">
             {{ __('Quotes List') }}
         </h2>
     </x-slot>
@@ -21,29 +21,29 @@
             <table class="table-quotes ">
                 <thead class="border-b">
                     <tr>
-                        <th scope="col" class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                        <th scope="col" class="text-ok text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                             #
                         </th>
-                        <th scope="col" class="text-sm text-gray-900 font-light px-0 py-4 whitespace-nowrap">
+                        <th scope="col" class="text-ok text-gray-900 font-light px-0 py-4 whitespace-nowrap">
                             Quote
                         </th>
-                        <th scope="col" class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                        <th scope="col" class="text-ok text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                             Author
                         </th>
-                        <th scope="col" class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                        <th scope="col" class="text-ok text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                             Publish date
                         </th>
-                        <th scope="col" class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                        <th scope="col" class="text-ok text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                             Category
                         </th>
-                        <th scope="col" class=" text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                        <th scope="col" class=" text-ok text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                             Actions
                         </th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($quotes as $quote)
-                    <tr class="border-b ">
+                    <tr class="border-b text-center">
                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                             {{$quote['id']}}
                         </td>

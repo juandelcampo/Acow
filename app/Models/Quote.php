@@ -13,8 +13,14 @@ class Quote extends Model
     {
         return $this->belongsTo(Author::class);
     }
+
     public function categories()
     {
         return $this->belongsToMany(Category::class)->withPivot('category_id','quote_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }
