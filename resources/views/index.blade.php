@@ -25,7 +25,7 @@
         {
         $.ajax({
             type: 'GET',
-                url: 'http://127.0.0.1:8000/api/random',
+                url: 'https://labia-api-quotes.herokuapp.com/api/random',
             })
             .done(
                 function(api)
