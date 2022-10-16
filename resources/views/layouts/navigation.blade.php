@@ -37,7 +37,7 @@
                 <!-- Logo -->
                 <div class="pt-16 flex  items-center content-center justify-center ">
                     <div   >
-                        <a href="{{ _('/') }}"><img  src="{{ URL::to('/images') }}/logo.png"  alt="Logo ACOW"  width = '100' class="center"></a>
+                        <a href="{{ __('/') }}"><img  src="{{ URL::to('/images') }}/logo.png"  alt="Logo ACOW"  width = '100' class="center"></a>
                     </div>
                 </div>
                 <!-- Navigation Links -->

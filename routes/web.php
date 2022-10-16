@@ -35,7 +35,7 @@ Route::get('list-of-categories', [CategoryController::class, 'listOfCategories']
 Route::get('/dashboard', function (){
     $user = Auth::user()->name;
     return view('dashboard', ['user' => $user]);
-    })->middleware(['auth'])->name ('dashboard');
+    })->middleware(['auth', 'verified'])->name ('dashboard');
 
 require __DIR__.'/auth.php';
 
