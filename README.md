@@ -55,6 +55,21 @@ $ sudo chmod +x /usr/local/bin/docker-compose
 
 `$ cd ~/dev/Acow`
 
+* Copy the example `.env` file:
+
+`cp .env.example .env`
+
+* Modify and save the `.env` file to contain the database credentials (set the DB password):
+
+```dotenv
+DB_CONNECTION=mysql
+DB_HOST=db
+DB_PORT=3306
+DB_DATABASE=acow
+DB_USERNAME=acow_user
+DB_PASSWORD=    # Set password
+```
+
 * While staying in this folder, build the `app` image:
 
 `$ docker-compose build app`
@@ -71,6 +86,10 @@ $ sudo chmod +x /usr/local/bin/docker-compose
 
 `$ docker-compose exec app php artisan key:generate`
 
+* Run the database migration:
+
+`$ docker-compose exec app php artisan migrate`
+
 * Visit the application in your browser by navigating to (`localhost` if running locally):
 
 `http://server_domain_or_IP`
@@ -78,6 +97,22 @@ $ sudo chmod +x /usr/local/bin/docker-compose
 * To shut down the environment:
 
 `$ docker-compose down`
+
+
+### Troubleshooting
+
+#### DB exit code 137
+
+* Initially I deployed to Digital Ocean with a droplet of only 512MB RAM. This caused the `mysql` container to get stuck 
+  in a restart loop (exit code 137) due to insufficient RAM. Resizing the droplet to 2GB resolved the issue.
+
+
+#### `docker-compose` hangs for no aparrent reason
+
+* Install:
+
+`sudo apt install -y haveged`
+
 
 ### Resources
 
