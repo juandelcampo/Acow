@@ -107,7 +107,7 @@ DB_PASSWORD=    # Set password
   in a restart loop (exit code 137) due to insufficient RAM. Resizing the droplet to 2GB resolved the issue.
 
 
-#### `docker-compose` hangs for no aparrent reason
+#### `docker-compose` hangs for no apparent reason
 
 * Install:
 
