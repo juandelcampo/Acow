@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1,
         maximum-scale=1, user-scalable=0">
         <link rel="shortcut icon" type="image/x-icon" href="{{ asset('favicon.png') }}">
-        <title>IAAQ</title>
+        <title>LABIA</title>
         <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Unica+One&display=swap">

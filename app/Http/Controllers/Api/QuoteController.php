@@ -143,15 +143,29 @@ public function __construct(TranslationRepositoryInterface $libreTranslateReposi
 
     public function customRandom(string $apiKey):JsonResponse
     {
-        $users = User::where('api_key', $apiKey)
+        /*
+        $user = User::getByKey($apiKey);
+        $quote = Quote::getRandomByUser($user);
+
+        return response()->json($quote, 200);
+
+
+        $user = User::getByKey($apiKey);
+        return response()->json(Quote::getTodayQuote($user),200);
+        */
+
+
+
+
+        $user = User::where('api_key', $apiKey)
                         ->select('id')
-                        ->get();
+                        ->first();
 
-        foreach ($users as $user){
-            $id = $user->id;
-        }
+        //foreach ($users as $user){
+            //$id = $user->id;
+        //}
 
-        $quotes = Quote::where('user_id', $id)
+        $quotes = Quote::where('user_id', $user->id)
                         ->with('user')
                         ->with('author')
                         ->get();
