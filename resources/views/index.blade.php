@@ -25,7 +25,7 @@
         {
         $.ajax({
             type: 'GET',
-                url: {{ asset('api/random') }},
+                url: "{{ asset('api/random') }}",
             })
             .done(
                 function(api)
