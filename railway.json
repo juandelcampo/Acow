@@ -3,7 +3,7 @@
       "builder": "NIXPACKS"
     },
     "deploy": {
-      "startCommand": "npm run production",
+      "startCommand": "npm run production", 
       "restartPolicyType": "ON_FAILURE",
       "restartPolicyMaxRetries": 10
     }
